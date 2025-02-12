@@ -1,6 +1,61 @@
 ####  Online banking (alif mobi) - PulNest
 Описание: онлайн кошелек
 
+#### Сущности
+1. Пользователи users:
+id int primary key 
+email string unique
+password string 
+phone_number int unique
+birth_date timestamp
+fullname string
+is_identified boolean 
+created_at timestamp
+updated_at timestamp
+deleted_at timestamp
+
+2. Кошельки wallets
+id int primary key
+user_id foreign key
+balance float
+created_at timestamp
+updated_at timestamp
+deleted_at timestamp
+ 
+3. Карты cards
+id int primary key
+user_id foreign key
+pan_number int unique
+balance float 
+expire_date timestamp
+cvv int 
+card_holder_name string
+created_at timestamp
+updated_at timestamp
+deleted_at timestamp
+
+
+4. Транзакции transactions
+id int primary key
+tran_type_id int foreign key
+source_id int foreign key
+destination_id int foreign key
+amount float
+currency default tjs
+
+
+5. Тип транзакции transaction_types
+id int primary key
+tran_type int primary key
+created_at timestamp
+updated_at timestamp
+deleted_at timestamp
+
+
+
+
+
+
 #### Основной функционал:
 Регистрация и авторизация
 1. Регистрация по номеру телефона или email.
