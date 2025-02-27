@@ -6,14 +6,14 @@ from starlette.responses import Response
 
 # from pkg.controllers.user import get_current_user, TokenPayload
 from pkg.services import cards as cards_service
-from schemas.cards import CardResponse
+from schemas.cards import CardCreate
 
 router = APIRouter()
 
 
 
 @router.post("/cards", summary="Create new card", tags=["cards"])
-def add_card(card: CardResponse):
+def add_card(card: CardCreate):
     user_id = 1
     new_card = cards_service.add_card(user_id, card)
     if new_card is None:
