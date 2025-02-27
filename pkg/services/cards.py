@@ -1,6 +1,7 @@
 from db.models import Cards
 from pkg.repositories import cards as cards_repository
 from schemas.cards import CardCreate, CardUpdate, CardResponse, CardReturn
+from cryptography.fernet import Fernet
 
 
 cipher_suite = Fernet(b"our-key-here")
@@ -24,9 +25,10 @@ def add_card(user_id, card: CardCreate):
 
 def get_card_by_id(user_id, card_id):
     card = cards_repository.get_card_by_id(user_id, card_id)
+    decrypted_card_number = decrypt_data(card.card_number)
     c = CardReturn()
     c.card_holder_name = card.card_holder_name,
-    c.card_number = card.card_number,
+    c.card_number = decrypted_card_number,
     c.exp_date = card.exp_date
     c.balance = card.balance
     return card
@@ -37,7 +39,7 @@ def get_all_cards(user_id):
     for card in cards:
         c = CardReturn()
         c.card_holder_name = card.card_holder_name,
-        c.card_number = card.card_number,
+        c.card_number = decrypt_data(card.card_number),
         c.exp_date = card.exp_date
         c.balance = card.balance
         card_list.append(c)
