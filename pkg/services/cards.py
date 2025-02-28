@@ -15,7 +15,7 @@ def add_card(user_id, card: CardCreate):
         encrypted_card_number = encrypt_data(card.card_number)
         encrypted_cvv = encrypt_data(card.cvv)
         c = Cards()
-        c.user_id = 1,
+        c.user_id = user_id,
         c.card_number = encrypted_card_number,
         c.card_holder_name = card.card_holder_name,
         c.exp_date = card.exp_date,

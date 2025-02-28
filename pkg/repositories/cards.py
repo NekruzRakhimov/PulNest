@@ -53,7 +53,7 @@ import datetime
 
 def add_card(user_id, card: Cards):
     with Session(bind=engine) as db:
-        card_db = Cards(user_id=card.user_id,
+        card_db = Cards(user_id=user_id,
                        card_number=card.card_number,
                        card_holder_name=card.card_holder_name,
                        exp_date=card.exp_date,
