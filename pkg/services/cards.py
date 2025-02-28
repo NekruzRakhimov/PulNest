@@ -1,6 +1,6 @@
-from db.models import Cards
+from db.models import Card
 from pkg.repositories import cards as cards_repository
-from schemas.cards import CardCreate, CardUpdate, CardResponse, CardReturn
+from schemas.cards import CardCreate, CardReturn
 from cryptography.fernet import Fernet
 
 
@@ -14,7 +14,7 @@ def decrypt_data(self, data: str) -> str:
 def add_card(user_id, card: CardCreate):
         encrypted_card_number = encrypt_data(card.card_number)
         encrypted_cvv = encrypt_data(card.cvv)
-        c = Cards()
+        c = Card()
         c.user_id = user_id,
         c.card_number = encrypted_card_number,
         c.card_holder_name = card.card_holder_name,
