@@ -27,7 +27,7 @@ def add_card(user_id, card: CardCreate):
     )
     
     logger.info(f"Adding card: {c}")
-    return cards_repository.add_card(c)
+    return cards_repository.add_card(user_id, c)
 
 
 
@@ -43,7 +43,8 @@ def add_card(user_id, card: CardCreate):
         cvv=encrypted_cvv
     )
     
-    logging.debug(f"Adding card: {c}")
+   
+    logger.info(f"Adding card: {c}")
     return cards_repository.add_card(c)
 
 
