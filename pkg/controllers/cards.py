@@ -122,9 +122,9 @@ def get_deleted_cards():
     )
 
 @router.get("/cards/{card_number}", summary="Get card by PAN", tags=["cards"])
-def get_card_by_number(card_number: str):
+def get_card_by_number(card_number):
     user_id = 1 
-    card = cards_service.get_card_by_number(user_id, card_number)
+    card = cards_service.get_card_by_number(user_id, str(card_number))
 
     if card is None:
         return JSONResponse(
@@ -136,6 +136,7 @@ def get_card_by_number(card_number: str):
         content={'card': card.model_dump()},
         status_code=status.HTTP_200_OK
     )
+
 
 
 

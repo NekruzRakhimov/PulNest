@@ -2,7 +2,7 @@ from db.models import Card
 from pkg.repositories import cards as cards_repository
 from schemas.cards import CardCreate, CardReturn, CardUpdate
 from cryptography.fernet import Fernet
-from logger.logger import logger
+from logging_config.logger import logger
 
 
 
@@ -26,8 +26,7 @@ def add_card(user_id, card: CardCreate):
         cvv=encrypted_cvv
     )
     
-    
-    logger.info(f"Adding card: user_id={user_id}, card_number={encrypted_card_number}, cvv={encrypted_cvv}")
+    logger.info(f"Adding card: user_id={user_id}, card_number=****{encrypted_card_number[-4:]}, cvv=***")
     return cards_repository.add_card(user_id, c)
 
 
@@ -35,6 +34,9 @@ def add_card(user_id, card: CardCreate):
 
 def get_card_by_id(user_id, card_id):
     card = cards_repository.get_card_by_id(user_id, card_id)
+    if card is None:
+        return None
+    
     decrypted_card_number = decrypt_data(card.card_number)
     
     c = CardReturn(
@@ -65,7 +67,6 @@ def get_all_cards(user_id):
     return card_list
 
 def update_card(user_id: int, card_id: int, card: CardUpdate):
-    c = Card()
     c = Card(
         user_id=user_id,
         card_number=encrypt_data(card.card_number),
@@ -102,12 +103,12 @@ def get_deleted_cards(user_id):
 
 def get_card_by_number(user_id, card_number):
     encrypted_card_number = encrypt_data(card_number)
-    logger.debug(f"Encrypted card number: {encrypted_card_number}")
+    logger.info(f"Encrypted card number: {encrypted_card_number}")
 
     card = cards_repository.get_card_by_number(user_id, encrypted_card_number)
 
     if card is None:
-        logger.warning(f"Card not found for PAN: {card_number} and user_id: {user_id}")
+        logger.info(f"Card not found for PAN: {card_number} and user_id: {user_id}")
         return None
 
     decrypted_card_number = decrypt_data(card.card_number)
@@ -121,6 +122,12 @@ def get_card_by_number(user_id, card_number):
     )
 
     return c
+
+
+
+
+
+
 
 
 
