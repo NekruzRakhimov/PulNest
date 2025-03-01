@@ -2,7 +2,7 @@ from db.models import Card
 from pkg.repositories import cards as cards_repository
 from schemas.cards import CardCreate, CardReturn, CardUpdate
 from cryptography.fernet import Fernet
-from logging_config.logger import logger
+from logger.logger import logger
 
 
 

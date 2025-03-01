@@ -2,7 +2,7 @@
 from sqlalchemy.orm import Session
 from db.postgres import engine
 from db.models import Card
-from logging_config.logger import logger
+from logger.logger import logger
 import datetime
 
 def add_card(user_id, card: Card):

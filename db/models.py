@@ -45,8 +45,6 @@ class Card(Base):
     deleted_at = Column(DateTime, nullable=True)
 
 
-
-
 class History(Base):
     __tablename__ = "history"
     id = Column(Integer, primary_key=True)
