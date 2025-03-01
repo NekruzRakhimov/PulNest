@@ -2,6 +2,7 @@
 from sqlalchemy.orm import Session
 from db.postgres import engine
 from db.models import Card
+from logger.logger import logger
 import datetime
 
 def add_card(user_id, card: Card):
@@ -132,6 +133,33 @@ def get_card_by_number(user_id, card_number):
     
     
 
+def get_card_by_number(user_id, card_number):
+    with Session(bind=engine) as db:
+        logger.info(f"Searching card by PAN... user_id={user_id}, card_number={card_number}")
+
+        db_card = db.query(Card).filter(Card.deleted_at == None, Card.user_id == user_id,
+                                        Card.card_number == card_number).first()
+        
+        logger.info(f"SQL Result: {db_card}")  # Покажет, нашлась карта или нет
+
+        if db_card is None:
+            logger.warning(f"Card not found for user_id={user_id}, card_number={card_number}")
+            return None
+        
+        logger.info(f"Card found: id={db_card.id}, user_id={db_card.user_id}")
+
+        card = Card()
+        card.id = db_card.id
+        card.user_id = db_card.user_id
+        card.card_number = db_card.card_number
+        card.card_holder_name = db_card.card_holder_name
+        card.exp_date = db_card.exp_date
+        card.cvv = db_card.cvv
+        card.balance = db_card.balance
+        card.created_at = db_card.created_at
+        card.deleted_at = db_card.deleted_at
+        
+        return card
 
 
         
