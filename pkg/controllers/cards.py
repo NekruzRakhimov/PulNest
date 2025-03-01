@@ -83,4 +83,45 @@ def update_card(card_id: int, card: CardUpdate):
         status_code=status.HTTP_200_OK
     )
 
+@router.delete("/cards/{card_id}", summary="Delete task by ID", tags=["cards"])
+def delete_task(card_id: int):
+    user_id = 1
+
+    card = cards_service.get_card_by_id(user_id, card_id)
+    if card is None:
+        return JSONResponse(
+            content={'error': 'Card not found'},
+            status_code=status.HTTP_404_NOT_FOUND
+        )
+
+    
+    deleted_task =cards_service.delete_card(user_id, card_id)
+    if deleted_task is None:
+        return JSONResponse(
+            content={'error': 'Something went wrong while deleting the card'},
+            status_code=status.HTTP_400_BAD_REQUEST
+        )
+    
+    return JSONResponse(
+        content={'message': 'Successfully deleted card'},
+        status_code=status.HTTP_200_OK
+    )
+
+
+@router.get("/deleted-cards", summary="Get all deleted cards", tags=["cards"])
+def get_deleted_cards():
+    user_id = 1  
+    cards = cards_service.get_deleted_cards(user_id)
+    
+    # Преобразуем каждый объект CardReturn в словарь
+    cards_dict = [card.dict() for card in cards]
+    
+    return JSONResponse(
+        content={'cards': cards_dict},
+        status_code=status.HTTP_200_OK
+    )
+
+
+    
+  
 

@@ -76,6 +76,28 @@ def update_card(user_id: int, card_id: int, card: CardUpdate):
 
     return cards_repository.update_card(user_id, card_id, c)
 
+
+
+def delete_card(user_id: int, card_id: int):
+    return cards_repository.delete_card(user_id, card_id)
+
+
+
+def get_deleted_cards(user_id):
+    cards = cards_repository.get_deleted_cards(user_id)
+    card_list = []
+    
+    for card in cards:
+        c = CardReturn(
+            card_holder_name=card.card_holder_name,
+            card_number=decrypt_data(card.card_number),
+            exp_date=card.exp_date,
+            balance=card.balance
+        )
+        card_list.append(c)
+    
+    return card_list
+
     
 
 
@@ -84,30 +106,5 @@ def update_card(user_id: int, card_id: int, card: CardUpdate):
 
 
 
-    # def get_card(self, card_id: int) -> CardResponse:
-    #     card = self.repository.get_card(card_id)
-    #     if not card:
-    #         raise Exception("Card not found")
-    #     # Дешифруем PAN и CVV перед возвратом
-    #     card.card_number = self.decrypt_data(card.card_number)
-    #     card.cvv = self.decrypt_data(card.cvv)
-    #     return CardResponse(**card)
+    
 
-    # def update_card(self, card_id: int, card: CardUpdate) -> CardResponse:
-    #     # Шифруем PAN и CVV перед обновлением
-    #     encrypted_card_number = self.encrypt_data(card.card_number)
-    #     encrypted_cvv = self.encrypt_data(card.cvv)
-    #     card_data = self.repository.update_card(
-    #         card_id=card_id,
-    #         card_number=encrypted_card_number,
-    #         card_holder_name=card.card_holder_name,
-    #         exp_date=card.exp_date,
-    #         cvv=encrypted_cvv
-    #     )
-    #     return CardResponse(**card_data)
-
-    # def delete_card(self, card_id: int):
-    #     card = self.repository.get_card(card_id)
-    #     if not card:
-    #         raise Exception("Card not found")
-    #     self.repository.delete_card(card_id)
