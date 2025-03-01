@@ -110,6 +110,27 @@ def get_deleted_cards(user_id):
             cards.append(card)
         return cards
 
+def get_card_by_number(user_id, card_number):
+    with Session(bind=engine) as db:
+        db_card = db.query(Card).filter(Card.deleted_at == None, Card.user_id == user_id,
+                                        Card.card_number == card_number).first()
+        
+        if db_card is None:
+            return None
+        
+        card = Card()
+        card.id = db_card.id
+        card.user_id = db_card.user_id
+        card.card_number = db_card.card_number
+        card.card_holder_name = db_card.card_holder_name
+        card.exp_date = db_card.exp_date
+        card.cvv = db_card.cvv
+        card.balance = db_card.balance
+        card.created_at = db_card.card_number
+        card.deleted_at = db_card.deleted_at
+        return card
+    
+    
 
 
 

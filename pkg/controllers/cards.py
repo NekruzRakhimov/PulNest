@@ -121,6 +121,26 @@ def get_deleted_cards():
         status_code=status.HTTP_200_OK
     )
 
+@router.get("/cards/{card_number}", summary="Get card by PAN", tags=["cards"])
+def get_card_by_number(card_number: str):
+    user_id = 1 
+    card = cards_service.get_card_by_number(user_id, card_number)
+
+    if card is None:
+        return JSONResponse(
+            content={'error': 'Card not found'},
+            status_code=status.HTTP_404_NOT_FOUND
+        )
+
+    return JSONResponse(
+        content={'card': card.model_dump()},
+        status_code=status.HTTP_200_OK
+    )
+
+
+
+    
+
 
     
   

@@ -98,6 +98,55 @@ def get_deleted_cards(user_id):
     
     return card_list
 
+
+
+def get_card_by_number(user_id, card_number):
+    encrypted_card_number = encrypt_data(card_number)
+    card = cards_repository.get_card_by_number(user_id, encrypted_card_number)
+
+    if card is None:
+        return None  
+
+    decrypted_card_number = decrypt_data(card.card_number)
+
+    c = CardReturn(
+        card_holder_name=card.card_holder_name,
+        card_number=decrypted_card_number,
+        exp_date=card.exp_date,
+        balance=card.balance
+    )
+
+    return c
+
+
+def get_card_by_number(user_id, card_number):
+    encrypted_card_number = encrypt_data(card_number)
+    logger.debug(f"Encrypted card number: {encrypted_card_number}")
+
+    card = cards_repository.get_card_by_number(user_id, encrypted_card_number)
+
+    if card is None:
+        logger.warning(f"Card not found for PAN: {card_number} and user_id: {user_id}")
+        return None
+
+    decrypted_card_number = decrypt_data(card.card_number)
+    logger.info(f"Card found: {card.card_holder_name}, PAN: {decrypted_card_number}")
+
+    c = CardReturn(
+        card_holder_name=card.card_holder_name,
+        card_number=decrypted_card_number,
+        exp_date=card.exp_date,
+        balance=card.balance
+    )
+
+    return c
+
+
+
+
+
+
+
     
 
 
