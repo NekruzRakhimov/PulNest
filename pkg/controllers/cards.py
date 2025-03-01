@@ -4,6 +4,7 @@ from fastapi import APIRouter, status
 
 from fastapi.responses import JSONResponse
 
+from logger.logger import logger
 # from pkg.controllers.user import get_current_user, TokenPayload
 from pkg.services import cards as cards_service
 from schemas.cards import CardCreate, CardUpdate
@@ -122,10 +123,10 @@ def get_deleted_cards():
     )
 
 @router.get("/cards/{card_number}", summary="Get card by PAN", tags=["cards"])
-def get_card_by_number(card_number):
+def get_card_by_number(card_number: str):
+    logger.info(card_number)
     user_id = 1 
-    card = cards_service.get_card_by_number(user_id, str(card_number))
-
+    card = cards_service.get_card_by_card_number(user_id, card_number)
     if card is None:
         return JSONResponse(
             content={'error': 'Card not found'},

@@ -40,7 +40,7 @@ class Card(Base):
     card_holder_name = Column(String, nullable=False)
     exp_date = Column(String, nullable=False)
     cvv = Column(String, nullable=False)
-    balance = Column(Float, default=0.00)
+    balance = Column(Float, default=0.00) 
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
 

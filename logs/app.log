@@ -17,3 +17,57 @@
 2025-03-01 10:57:38,539 - INFO - task_manager - add_card - Line 30 - Adding card: user_id=1, card_number=gAAAAABnwqHSNzVXHNiGSDfONlpKMKKcrgBfQJEvI2MRpmaERqmSKzQxwx-AKKosqKdC6rATq7kn9QXue3fh_hwwOKfOjDl_LoUZeUASdZV9lRXlUhp7770=, cvv=gAAAAABnwqHSJ3bjdJXk3TrVKJj4ElRricldgdb-8roTvgb-5XkorUkGNOP21hs_8xAihV_xwyi21dFMxxqc11DsfhfUpihqkg==
 2025-03-01 11:59:15,817 - INFO - task_manager - add_card - Line 30 - Adding card: user_id=1, card_number=gAAAAABnwrBDA7fK4a-FQirkQp0brXxx10PCwILYEf7Vz-4NtjEaEjoOlFyNduht-AQ5tcM2zb2sX2ar8jkiPo2jqGmHJpzvO_MdLxshTwDbFNNwaOC-YR4=, cvv=gAAAAABnwrBDZn6J0Dcahwa2Ixy2M8YM8vjj4Vh5gya3Cvht8QPLpZ1U40LxAGoLc2NlEeO1yg3Ewp9cuu-Xj7lfNxrGy6A-eg==
 2025-03-01 12:35:36,120 - INFO - task_manager - add_card - Line 29 - Adding card: user_id=1, card_number=****ugM=, cvv=***
+2025-03-01 15:56:20,805 - INFO - task_manager - add_card - Line 33 - Adding card: user_id=1, card_number=****b'awI=', cvv=***
+2025-03-01 15:56:24,577 - INFO - task_manager - add_card - Line 33 - Adding card: user_id=1, card_number=****b'N5A=', cvv=***
+2025-03-01 15:58:36,830 - INFO - task_manager - add_card - Line 33 - Adding card: user_id=1, card_number=****b'yqk=', cvv=***
+2025-03-01 16:13:15,123 - INFO - task_manager - add_card - Line 45 - Adding card: user_id=1, card_number=****S9U=, cvv=***
+2025-03-01 16:13:16,152 - INFO - task_manager - add_card - Line 45 - Adding card: user_id=1, card_number=****LWI=, cvv=***
+2025-03-01 16:13:58,067 - INFO - task_manager - add_card - Line 34 - gAAAAABnwuv2Ihh9eeE5lrE6jrHNlIL_AjS8joR9D2vbgBMdCxPgoepzch2v0vaWffDeL2yuPR2iGRrrApwescansnatoNepg_SJF1-PI2zV6w681LkI2WQ=
+2025-03-01 16:13:58,067 - INFO - task_manager - add_card - Line 35 - gAAAAABnwuv2xuUBimPMg4ChUOMMVVSRBr3DnmBAoLWLh72dJbdL_2TiVXwpeFeRFDRw2i6MkoLZTm35PUJPi_CSzOLcnfOI2VOw3-imUq1S_qpdv2-Vm4E=
+2025-03-01 16:13:58,070 - INFO - task_manager - add_card - Line 45 - Adding card: user_id=1, card_number=****AV4=, cvv=***
+2025-03-01 16:15:53,852 - INFO - task_manager - add_card - Line 30 - gAAAAABnwuxpOZ1p0leaqeDdZnem3q1ufpQ2MkzP5AKlo_M2pxi8bNhxJJAcGqPjCpg0kBiaMIwF9MQeM9P8aK3BI2jUGNTnGOnFXjzhqTLT9j1j7S188AU=
+2025-03-01 16:15:53,853 - INFO - task_manager - add_card - Line 31 - gAAAAABnwuxpUChFAuCGxGXuagTz02SP-rnT3VpD7xdowUMrrRnyPn0fYEDXpG02M1woX56NolBHKZXjbvrZnxoM7QegGajN88wEoVB5l7SPXcpsZaB9kvM=
+2025-03-01 16:15:53,854 - INFO - task_manager - add_card - Line 41 - Adding card: user_id=1, card_number=****nF8=, cvv=***
+2025-03-01 16:30:12,868 - INFO - task_manager - add_card - Line 46 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:30:12,868 - INFO - task_manager - add_card - Line 47 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:30:12,872 - INFO - task_manager - add_card - Line 57 - Adding card: user_id=1, card_number=****XCY=, cvv=***
+2025-03-01 16:30:14,953 - INFO - task_manager - add_card - Line 46 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:30:14,953 - INFO - task_manager - add_card - Line 47 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:30:14,953 - INFO - task_manager - add_card - Line 57 - Adding card: user_id=1, card_number=****XCY=, cvv=***
+2025-03-01 16:34:05,078 - INFO - task_manager - add_card - Line 46 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:34:05,078 - INFO - task_manager - add_card - Line 47 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:34:05,080 - INFO - task_manager - add_card - Line 57 - Adding card: user_id=1, card_number=****XCY=, cvv=***
+2025-03-01 16:34:05,084 - ERROR - task_manager - add_card - Line 20 - (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "cards_card_number_key"
+DETAIL:  Key (card_number)=(eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=) already exists.
+
+[SQL: INSERT INTO cards (user_id, card_number, card_holder_name, exp_date, cvv, balance, created_at, deleted_at) VALUES (%(user_id)s, %(card_number)s, %(card_holder_name)s, %(exp_date)s, %(cvv)s, %(balance)s, %(created_at)s, %(deleted_at)s) RETURNING cards.id]
+[parameters: {'user_id': 1, 'card_number': 'eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=', 'card_holder_name': 'manizha mirqosimova', 'exp_date': '10/26', 'cvv': 'EiVp3pCJDxEqgoQnTx2qWg==', 'balance': 0.0, 'created_at': datetime.datetime(2025, 3, 1, 16, 34, 5, 82728), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-01 16:35:27,740 - INFO - task_manager - add_card - Line 46 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:35:27,742 - INFO - task_manager - add_card - Line 47 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:35:27,742 - INFO - task_manager - add_card - Line 57 - Adding card: user_id=1, card_number=****XCY=, cvv=***
+2025-03-01 16:35:27,746 - ERROR - task_manager - add_card - Line 20 - (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "cards_card_number_key"
+DETAIL:  Key (card_number)=(eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=) already exists.
+
+[SQL: INSERT INTO cards (user_id, card_number, card_holder_name, exp_date, cvv, balance, created_at, deleted_at) VALUES (%(user_id)s, %(card_number)s, %(card_holder_name)s, %(exp_date)s, %(cvv)s, %(balance)s, %(created_at)s, %(deleted_at)s) RETURNING cards.id]
+[parameters: {'user_id': 1, 'card_number': 'eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=', 'card_holder_name': 'manizha mirqosimova', 'exp_date': '10/26', 'cvv': 'EiVp3pCJDxEqgoQnTx2qWg==', 'balance': 0.0, 'created_at': datetime.datetime(2025, 3, 1, 16, 35, 27, 744955), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-03-01 16:50:54,872 - INFO - task_manager - add_card - Line 31 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:50:54,873 - INFO - task_manager - add_card - Line 32 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:50:54,873 - INFO - task_manager - add_card - Line 42 - Adding card: user_id=1, card_number=****XCY=, cvv=***
+2025-03-01 16:50:54,876 - ERROR - task_manager - add_card - Line 20 - (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "cards_card_number_key"
+DETAIL:  Key (card_number)=(eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=) already exists.
+
+[SQL: INSERT INTO cards (user_id, card_number, card_holder_name, exp_date, cvv, balance, created_at, deleted_at) VALUES (%(user_id)s, %(card_number)s, %(card_holder_name)s, %(exp_date)s, %(cvv)s, %(balance)s, %(created_at)s, %(deleted_at)s) RETURNING cards.id]
+[parameters: {'user_id': 1, 'card_number': 'eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=', 'card_holder_name': 'manizha mirqosimova', 'exp_date': '10/26', 'cvv': 'EiVp3pCJDxEqgoQnTx2qWg==', 'balance': 0.0, 'created_at': datetime.datetime(2025, 3, 1, 16, 50, 54, 874529), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-01 16:54:04,772 - INFO - task_manager - add_card - Line 30 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:54:04,773 - INFO - task_manager - add_card - Line 31 - eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=
+2025-03-01 16:54:04,774 - INFO - task_manager - add_card - Line 41 - Adding card: user_id=1, card_number=****XCY=, cvv=***
+2025-03-01 16:54:04,793 - ERROR - task_manager - add_card - Line 20 - (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "cards_card_number_key"
+DETAIL:  Key (card_number)=(eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=) already exists.
+
+[SQL: INSERT INTO cards (user_id, card_number, card_holder_name, exp_date, cvv, balance, created_at, deleted_at) VALUES (%(user_id)s, %(card_number)s, %(card_holder_name)s, %(exp_date)s, %(cvv)s, %(balance)s, %(created_at)s, %(deleted_at)s) RETURNING cards.id]
+[parameters: {'user_id': 1, 'card_number': 'eeHJOB62FOISJ25WJEolFXnsGqE78SZr5s239GSHXCY=', 'card_holder_name': 'manizha mirqosimova', 'exp_date': '10/26', 'cvv': 'EiVp3pCJDxEqgoQnTx2qWg==', 'balance': 0.0, 'created_at': datetime.datetime(2025, 3, 1, 16, 54, 4, 776580), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)

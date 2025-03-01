@@ -1,23 +1,35 @@
 from db.models import Card
 from pkg.repositories import cards as cards_repository
 from schemas.cards import CardCreate, CardReturn, CardUpdate
-from cryptography.fernet import Fernet
+# from cryptography.fernet import Fernet
 from logger.logger import logger
 
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+import base64
+
+# Фиксированный 16-байтовый ключ (AES требует ключ длиной 16, 24 или 32 байта)
+KEY = b'YourSecretKey123'  # Длина ключа должна быть ровно 16 байт
 
 
-cipher_suite = Fernet(b'J7IkzyQSkS9zWj9b_s0NOc8X1xKHcN5Mm3DRzRaP4hQ=')
+def encrypt_data(text: str) -> str:
+    cipher = AES.new(KEY, AES.MODE_ECB)
+    encrypted_bytes = cipher.encrypt(pad(text.encode(), AES.block_size))
+    return base64.b64encode(encrypted_bytes).decode()
 
-def encrypt_data(data: str) -> str:
-    return cipher_suite.encrypt(data.encode()).decode()
 
-def decrypt_data(data: str) -> str:
-    return cipher_suite.decrypt(data.encode()).decode()
+def decrypt_data(encrypted_text: str) -> str:
+    cipher = AES.new(KEY, AES.MODE_ECB)
+    decrypted_bytes = unpad(cipher.decrypt(base64.b64decode(encrypted_text)), AES.block_size)
+    return decrypted_bytes.decode()
 
 def add_card(user_id, card: CardCreate):
     encrypted_card_number = encrypt_data(card.card_number)
     encrypted_cvv = encrypt_data(card.cvv)
     
+    logger.info(encrypt_data(card.card_number))
+    logger.info(encrypt_data(card.card_number))
+
     c = Card(
         user_id=user_id,
         card_number=encrypted_card_number,
@@ -101,11 +113,11 @@ def get_deleted_cards(user_id):
 
 
 
-def get_card_by_number(user_id, card_number):
+def get_card_by_card_number(user_id, card_number):
     encrypted_card_number = encrypt_data(card_number)
-    logger.info(f"Encrypted card number: {encrypted_card_number}")
+    logger.info("Encrypted card number:" + encrypted_card_number)
 
-    card = cards_repository.get_card_by_number(user_id, encrypted_card_number)
+    card = cards_repository.get_card_by_card_number(user_id, encrypted_card_number)
 
     if card is None:
         logger.info(f"Card not found for PAN: {card_number} and user_id: {user_id}")
