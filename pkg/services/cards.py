@@ -1,6 +1,6 @@
 from db.models import Card
 from pkg.repositories import cards as cards_repository
-from schemas.cards import CardCreate, CardReturn
+from schemas.cards import CardCreate, CardReturn, CardUpdate
 from cryptography.fernet import Fernet
 from logger.logger import logger
 
@@ -26,26 +26,9 @@ def add_card(user_id, card: CardCreate):
         cvv=encrypted_cvv
     )
     
-    logger.info(f"Adding card: {c}")
+    
+    logger.info(f"Adding card: user_id={user_id}, card_number={encrypted_card_number}, cvv={encrypted_cvv}")
     return cards_repository.add_card(user_id, c)
-
-
-
-def add_card(user_id, card: CardCreate):
-    encrypted_card_number = encrypt_data(card.card_number)
-    encrypted_cvv = encrypt_data(card.cvv)
-    
-    c = Card(
-        user_id=user_id,
-        card_number=encrypted_card_number,
-        card_holder_name=card.card_holder_name,
-        exp_date=card.exp_date,
-        cvv=encrypted_cvv
-    )
-    
-   
-    logger.info(f"Adding card: {c}")
-    return cards_repository.add_card(c)
 
 
 
@@ -81,6 +64,19 @@ def get_all_cards(user_id):
     
     return card_list
 
+def update_card(user_id: int, card_id: int, card: CardUpdate):
+    c = Card()
+    c = Card(
+        user_id=user_id,
+        card_number=encrypt_data(card.card_number),
+        card_holder_name=card.card_holder_name,
+        exp_date=card.exp_date,
+        cvv=encrypt_data(card.cvv)
+    )
+
+    return cards_repository.update_card(user_id, card_id, c)
+
+    
 
 
 

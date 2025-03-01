@@ -6,7 +6,8 @@ from fastapi.responses import JSONResponse
 
 # from pkg.controllers.user import get_current_user, TokenPayload
 from pkg.services import cards as cards_service
-from schemas.cards import CardCreate
+from schemas.cards import CardCreate, CardUpdate
+
 
 router = APIRouter()
 
@@ -27,45 +28,59 @@ def add_card(card: CardCreate):
     )
 
 
-
 @router.get("/cards/{card_id}", summary="Get card by ID", tags=["cards"])
 def get_card_by_id(card_id: int):
     user_id = 1 
     card = cards_service.get_card_by_id(user_id, card_id)
-    
+
     if card is None:
         return JSONResponse(
             content={'error': 'Card not found'},
             status_code=status.HTTP_404_NOT_FOUND
-        )
-    
+    )
 
     return JSONResponse(
-        content={'card': card},
+        content={'card': card.model_dump()},
         status_code=status.HTTP_200_OK
     )
+
+
 
 @router.get("/cards", summary="Get all cards", tags=["cards"])
 def get_all_cards():
     user_id = 1  
     cards = cards_service.get_all_cards(user_id)
     
+    # Преобразуем каждый объект CardReturn в словарь
+    cards_dict = [card.dict() for card in cards]
+    
     return JSONResponse(
-        content={'cards': cards},
+        content={'cards': cards_dict},
         status_code=status.HTTP_200_OK
     )
 
 
-# @router.put("/cards/{card_id}", response_model=CardResponse)
-# def update_card(card_id: int, card: CardUpdate, service: CardsService = Depends()):
-#     try:
-#         return service.update_card(card_id, card)
-#     except Exception as e:
-#         raise HTTPException(status_code=400, detail=str(e))
+@router.put("/cards/{card_id}", summary="Update card by ID", tags=["cards"])
+def update_card(card_id: int, card: CardUpdate):
+    user_id = 1
 
-# @router.delete("/cards/{card_id}")
-# def delete_card(card_id: int, service: CardsService = Depends()):
-#     try:
-#         service.delete_card(card_id)
-#     except Exception as e:
-#         raise HTTPException(status_code=400, detail=str(e))
+    got_by_id = cards_service.get_card_by_id(user_id, card_id)
+    if got_by_id is None:
+         return JSONResponse(
+            content={'error': 'Card not found'},
+            status_code=status.HTTP_404_NOT_FOUND
+    )
+
+    updated_card = cards_service.update_card(user_id, card_id, card)
+    if updated_card is None:
+        return JSONResponse(
+            content={'error': 'Something went wrong while updating the card'},
+            status_code=status.HTTP_400_BAD_REQUEST
+        )
+    
+    return JSONResponse(
+        content={'message': 'Successfully updated new card'},
+        status_code=status.HTTP_200_OK
+    )
+
+

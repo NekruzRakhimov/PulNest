@@ -4,3 +4,13 @@
 2025-03-01 05:17:30,413 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x1099b4f50>
 2025-03-01 05:17:41,752 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x107f26f90>
 2025-03-01 05:18:40,184 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x1110faf90>
+2025-03-01 05:20:04,850 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x111758410>
+2025-03-01 05:20:14,375 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x111758f50>
+2025-03-01 05:20:45,225 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x103cc2f90>
+2025-03-01 05:30:55,216 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x1044bc410>
+2025-03-01 05:30:56,359 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x1044bcf50>
+2025-03-01 05:35:20,261 - INFO - task_manager - add_card - Line 47 - Adding card: <db.models.Card object at 0x1044c0c30>
+2025-03-01 05:37:49,518 - INFO - task_manager - add_card - Line 29 - Adding card: <db.models.Card object at 0x103e6ef90>
+2025-03-01 05:43:07,803 - INFO - task_manager - add_card - Line 30 - Adding card: user_id=1, card_number=gAAAAABnwlgbaQki4caEsVlM_iWFHzPHeBNfwTNwcPnrZeXGKTCP0_wHE3AGOhKozPgt2RO-ZA3TMHu0qVQ67UFHPC5nkjsJfjR85P4DnEapakkDtpIg01Y=, cvv=gAAAAABnwlgb5ehuhdQYP991zX2urRlK09AwSlcJ_ETK6RswuHD5tsagd11GoidKKciccI_rXdv_KfWX6phMnbOAKMnDT6qsjA==
+2025-03-01 05:48:55,577 - INFO - task_manager - add_card - Line 30 - Adding card: user_id=1, card_number=gAAAAABnwll3182WXbGt3_c7GMb8nEJaAcZzpJQ5K5HDGppLsjV4GPu7F8pNt18GlNV3690virZa7F1MfPm7n8l7C7c4Wsh0mdapIb1C-G6yBJILU3EiWq8=, cvv=gAAAAABnwll3QSQFJac-isrPffq4APuhJv5TIjyFe9O_-_B-CSfLlgnG3LeyWWeLTLo8q0trrQt5QEk2j1isKGV3zn2PwiEPrw==
+2025-03-01 05:50:29,525 - INFO - task_manager - add_card - Line 30 - Adding card: user_id=1, card_number=gAAAAABnwlnV3AZp1auJuO83v6pM69XBUB3Is7qaGM0qNRZfBF1YBzv3BUGB-CpxEEuxtexhS0unEiOwHIlOegUAj_OqqT6QKA2BOV27Ozu6yLFBAsG8HO4=, cvv=gAAAAABnwlnVG3i1ZhY5mY8xaQpWFbZxt7DsbSaveXGsENpm1oAGhl7xo__TPJ8VIV-99MGjTT1uO5M5oWBSrayazPP4D6ioow==

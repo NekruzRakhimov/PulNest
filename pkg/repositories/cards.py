@@ -36,14 +36,15 @@ def get_card_by_id(user_id, card_id):
         return card
 
 
+
 def get_all_cards(user_id):
     with Session(bind=engine) as db:
-        db_card = db.query(Card).filter(Card.deleted_at == None,
+        db_cards = db.query(Card).filter(Card.deleted_at == None,
                                          Card.user_id == user_id).all()
 
         cards = list()
-        for card in db_card:
-            card = Card()
+        for db_card in db_cards:
+            card = Card() 
             card.id = db_card.id
             card.user_id = db_card.user_id
             card.card_number = db_card.card_number
@@ -51,10 +52,52 @@ def get_all_cards(user_id):
             card.exp_date = db_card.exp_date
             card.cvv = db_card.cvv
             card.balance = db_card.balance
-            card.created_at = db_card.card_number
+            card.created_at = db_card.created_at  
             card.deleted_at = db_card.deleted_at
-           
+            
             cards.append(card)
         return cards
 
+
+def update_card(user_id, card_id, c: Card):
+    with Session(bind=engine) as db:
+        db_card = db.query(Card).filter(Card.deleted_at == None, Card.user_id == user_id,
+                                        Card.id == card_id).first()
+        
+        if db_card is None:
+            return None
+
+
+        db_card.card_number = c.card_number
+        db_card.card_holder_name = c.card_holder_name
+        db_card.exp_date = c.exp_date
+        db_card.cvv = c.cvv
+        db.commit()  
+        db.refresh(db_card)  
+        return db_card.id  
+      
+
+
+        
+
+        
+        
+
+    
+
+
+# def update_task(user_id, task_id, task: Task):
+#     with Session(bind=engine) as db:
+#         db_task = db.query(Task).filter(Task.deleted_at == None, Task.user_id == user_id, 
+#                                         Task.id == task_id).first()
+        
+#         if db_task:
+#             db_task.title = task.title
+#             db_task.description = task.description
+#             db_task.priority = task.priority
+#             db.commit()  
+#             db.refresh(db_task)  
+#             return db_task.id  
+#         else:
+#             return None
 
