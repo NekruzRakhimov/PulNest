@@ -1,5 +1,3 @@
-import json
-
 from fastapi import APIRouter, status
 
 from fastapi.responses import JSONResponse
@@ -10,7 +8,10 @@ from pkg.services import cards as cards_service
 from schemas.cards import CardCreate, CardUpdate
 
 
+
 router = APIRouter()
+
+
 
 @router.post("/cards", summary="Create new card", tags=["cards"])
 def add_card(card: CardCreate):
@@ -29,31 +30,14 @@ def add_card(card: CardCreate):
     )
 
 
-@router.get("/cards/{card_id}", summary="Get card by ID", tags=["cards"])
-def get_card_by_id(card_id: int):
-    user_id = 1 
-    card = cards_service.get_card_by_id(user_id, card_id)
-
-    if card is None:
-        return JSONResponse(
-            content={'error': 'Card not found'},
-            status_code=status.HTTP_404_NOT_FOUND
-    )
-
-    return JSONResponse(
-        content={'card': card.model_dump()},
-        status_code=status.HTTP_200_OK
-    )
-
-
 
 @router.get("/cards", summary="Get all cards", tags=["cards"])
 def get_all_cards():
     user_id = 1  
     cards = cards_service.get_all_cards(user_id)
     
-    # Преобразуем каждый объект CardReturn в словарь
-    cards_dict = [card.dict() for card in cards]
+    cards_dict = [card.model_dump() for card in cards]
+
     
     return JSONResponse(
         content={'cards': cards_dict},
@@ -61,7 +45,8 @@ def get_all_cards():
     )
 
 
-@router.put("/cards/{card_id}", summary="Update card by ID", tags=["cards"])
+
+@router.put("/cards/{card_id}/update", summary="Update card by ID", tags=["cards"])
 def update_card(card_id: int, card: CardUpdate):
     user_id = 1
 
@@ -84,7 +69,9 @@ def update_card(card_id: int, card: CardUpdate):
         status_code=status.HTTP_200_OK
     )
 
-@router.delete("/cards/{card_id}", summary="Delete task by ID", tags=["cards"])
+
+
+@router.delete("/cards/{card_id}/delete", summary="Delete task by ID", tags=["cards"])
 def delete_task(card_id: int):
     user_id = 1
 
@@ -95,7 +82,8 @@ def delete_task(card_id: int):
             status_code=status.HTTP_404_NOT_FOUND
         )
 
-    
+
+
     deleted_task =cards_service.delete_card(user_id, card_id)
     if deleted_task is None:
         return JSONResponse(
@@ -109,20 +97,23 @@ def delete_task(card_id: int):
     )
 
 
+
 @router.get("/deleted-cards", summary="Get all deleted cards", tags=["cards"])
 def get_deleted_cards():
     user_id = 1  
     cards = cards_service.get_deleted_cards(user_id)
     
-    # Преобразуем каждый объект CardReturn в словарь
-    cards_dict = [card.dict() for card in cards]
+    cards_dict = [card.model_dump() for card in cards]
+
     
     return JSONResponse(
         content={'cards': cards_dict},
         status_code=status.HTTP_200_OK
     )
 
-@router.get("/cards/{card_number}", summary="Get card by PAN", tags=["cards"])
+
+
+@router.get("/cards/{card_number}/number", summary="Get card by PAN", tags=["cards"])
 def get_card_by_number(card_number: str):
     logger.info(card_number)
     user_id = 1 
@@ -140,10 +131,32 @@ def get_card_by_number(card_number: str):
 
 
 
+@router.get("/cards/{card_id}/details", summary="Get card by ID", tags=["cards"])
+def get_card_by_id(card_id: int):
+    user_id = 1 
+    card = cards_service.get_card_by_id(user_id, card_id)
+
+    if card is None:
+        return JSONResponse(
+            content={'error': 'Card not found'},
+            status_code=status.HTTP_404_NOT_FOUND
+    )
+
+    return JSONResponse(
+        content={'card': card.model_dump()},
+        status_code=status.HTTP_200_OK
+    )
+
+
+
+
+
+    
+    
 
     
 
+ 
+        
 
-    
-  
 

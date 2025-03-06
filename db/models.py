@@ -1,5 +1,6 @@
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, ForeignKey, String, Float, DateTime
+from sqlalchemy import Numeric
 import datetime
 from db.postgres import engine
 
@@ -27,9 +28,10 @@ class Wallet(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     phone = Column(String, unique=True, nullable=False)
-    balance = Column(Float, default=0.00)
+    balance = Column(Numeric(precision=12, scale=2), default=0.00)
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
+
 
 
 class Card(Base):
@@ -40,13 +42,13 @@ class Card(Base):
     card_holder_name = Column(String, nullable=False)
     exp_date = Column(String, nullable=False)
     cvv = Column(String, nullable=False)
-    balance = Column(Float, default=0.00) 
+    balance = Column(Numeric(precision=12, scale=2), default=0.00)
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
 
 
-class History(Base):
-    __tablename__ = "history"
+class Transactions(Base):
+    __tablename__ = "transactions"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     source_type = Column(String, nullable=False)  # card/wallet
