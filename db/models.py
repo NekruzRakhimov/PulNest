@@ -11,6 +11,7 @@ class Base(DeclarativeBase):
 
 class User(Base):
     __tablename__ = "users"
+
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     surname = Column(String, nullable=False)
@@ -25,6 +26,7 @@ class User(Base):
 
 class Wallet(Base):
     __tablename__ = "wallets"
+
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     phone = Column(String, unique=True, nullable=False)
@@ -33,9 +35,9 @@ class Wallet(Base):
     deleted_at = Column(DateTime, nullable=True)
 
 
-
 class Card(Base):
     __tablename__ = "cards"
+
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     card_number = Column(String, unique=True, nullable=False)
@@ -49,6 +51,7 @@ class Card(Base):
 
 class Transactions(Base):
     __tablename__ = "transactions"
+
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     source_type = Column(String, nullable=False)  # card/wallet
@@ -60,10 +63,18 @@ class Transactions(Base):
     status = Column(String, nullable=False)
 
 
+class Category(Base):
+    __tablename__ = "categories"
+
+    id = Column(Integer, primary_key=True)
+    category_name = Column(String, nullable=False)
+
+
 class Services(Base):
     __tablename__ = "services"
+
     id = Column(Integer, primary_key=True)
-    category = Column(String, nullable=False)
+    category = Column(Integer, ForeignKey("categories.id"), nullable=False)
     subcategory = Column(String, nullable=False)
     merchant_name = Column(String, nullable=False)
     balance = Column(Float, default=0.00)
