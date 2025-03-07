@@ -3,6 +3,8 @@ from pkg.repositories import cards as cards_repository
 from pkg.repositories import transactions as transaction_repository
 from schemas.cards import CardCreate, CardReturn, CardUpdate
 from logger.logger import logger
+from decimal import Decimal
+
 
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
@@ -98,24 +100,25 @@ def delete_card(user_id: int, card_id: int):
     return cards_repository.delete_card(user_id, card_id)
 
 
-def expense_card_balance(user_id, amount, card: CardReturn):
+def expense_card_balance(user_id, amount, balance, card_id):
   
-    if card.balance < amount:
+    if balance < amount:
         return -1
 
-    expense = cards_repository.expense_card_balance(user_id, amount, card.id)
+    expense = cards_repository.expense_card_balance(user_id, card_id, amount)
 
     return expense
   
 
 
-def income_card_balance(user_id, amount, card: CardReturn):
+def income_card_balance(user_id, amount, balance, card_id):
+
+    if Decimal(str(balance)) + Decimal(str(amount)) > Decimal('9999999999.12'):
 
 
-    if card.balance + amount > 9999999999.12:
         return -2
     
-    income = cards_repository.income_card_balance(user_id, amount, card.id)
+    income = cards_repository.income_card_balance(user_id, amount, card_id)
 
     return income
 

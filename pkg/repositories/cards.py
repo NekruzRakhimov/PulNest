@@ -92,7 +92,7 @@ def expense_card_balance(user_id, card_id, amount):
         return db_card
         
 
-def income_card_balance(user_id, card_id, amount):
+def income_card_balance(user_id, amount, card_id,):
     with Session(bind=engine) as db:
         db_card = db.query(Card).filter(Card.deleted_at == None, Card.user_id == user_id,
                                         Card.id == card_id).first()
@@ -102,6 +102,8 @@ def income_card_balance(user_id, card_id, amount):
         
         db_card.balance += amount
         db.commit()
+        db.refresh(db_card)
+        logger.info(f"Balance updated: card_id={db_card.id}, new_balance={db_card.balance}")
         return db_card
 
 

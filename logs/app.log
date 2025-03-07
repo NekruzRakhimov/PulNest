@@ -259,3 +259,158 @@ DETAIL:  Key (card_number)=(EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=) alread
 2025-03-06 21:44:31,374 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
 2025-03-06 21:46:42,761 - INFO - task_manager - get_all_cards - Line 42 - Getting all cards... user_id=1
 2025-03-06 21:46:42,780 - INFO - task_manager - get_all_cards - Line 45 - Found 2 cards for user_id=1
+2025-03-06 22:42:15,663 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-06 22:42:15,672 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-06 22:42:15,672 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-06 22:42:15,673 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-06 22:48:31,597 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-06 22:48:31,613 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-06 22:48:31,614 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-06 22:48:31,616 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-06 23:03:17,757 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-06 23:03:17,774 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-06 23:03:17,775 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-06 23:03:17,776 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-06 23:03:17,777 - ERROR - task_manager - expense_card_balance - Line 35 - Error debiting card 2244567812341608 for amount 15
+2025-03-06 23:08:46,975 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-06 23:08:46,982 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-06 23:08:46,982 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-06 23:08:46,983 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-06 23:08:46,986 - ERROR - task_manager - expense_card_balance - Line 35 - Error debiting card 2244567812341608 for amount 15
+2025-03-06 23:10:18,689 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-06 23:10:18,697 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-06 23:10:18,697 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-06 23:10:18,698 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-06 23:10:18,727 - ERROR - task_manager - expense_card_balance - Line 49 - Failed transaction between 2244567812341608 and 2234567812345608
+2025-03-06 23:10:18,727 - INFO - task_manager - card_to_card - Line 18 - Transaction: sender 23, receiver 20, amount 15, status failed
+2025-03-07 04:47:33,453 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 04:47:33,459 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-07 04:47:33,460 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 04:47:33,461 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-07 04:47:33,467 - ERROR - task_manager - expense_card_balance - Line 49 - Failed transaction between 2244567812341608 and 2234567812345608
+2025-03-07 04:48:20,717 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 04:48:20,735 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-07 04:48:20,735 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 04:48:20,736 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-07 04:48:20,740 - ERROR - task_manager - expense_card_balance - Line 49 - Failed transaction between 2244567812341608 and 2234567812345608
+2025-03-07 04:48:20,741 - INFO - task_manager - card_to_card - Line 18 - Transaction: sender 23, receiver 20, amount 15, status failed
+2025-03-07 04:53:22,513 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 04:53:22,531 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-07 04:53:22,532 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 04:53:22,533 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-07 04:53:22,538 - ERROR - task_manager - expense_card_balance - Line 49 - Failed transaction between 2244567812341608 and 2234567812345608
+2025-03-07 04:53:22,538 - INFO - task_manager - card_to_card - Line 23 - expense_sender_id=23, income_receiver_id=20
+2025-03-07 04:53:22,538 - INFO - task_manager - card_to_card - Line 39 - Transaction: sender 23, receiver 20, amount 15, status failed
+2025-03-07 05:00:12,750 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:00:12,770 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-07 05:00:12,770 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:00:12,771 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-07 05:00:12,776 - ERROR - task_manager - expense_card_balance - Line 49 - Failed transaction between 2244567812341608 and 2234567812345608
+2025-03-07 05:00:12,776 - INFO - task_manager - card_to_card - Line 23 - expense_sender_id=23, income_receiver_id=20
+2025-03-07 05:00:12,776 - INFO - task_manager - card_to_card - Line 39 - Transaction: sender 23, receiver 20, amount 15, status failed
+2025-03-07 05:00:12,786 - INFO - task_manager - card_to_card - Line 24 - After commit: source_id=23, dest_id=20, amount=15.0
+2025-03-07 05:13:27,432 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:13:27,438 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=23, user_id=1
+2025-03-07 05:13:27,438 - INFO - task_manager - get_card_by_card_number - Line 131 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:13:27,439 - INFO - task_manager - get_card_by_card_number - Line 138 - Card found: id=20, user_id=1
+2025-03-07 05:18:13,303 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:18:13,309 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:18:13,309 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:18:13,310 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:18:13,310 - ERROR - task_manager - expense_card_balance - Line 41 - Insufficient funds on card 2244567812341608
+2025-03-07 05:19:26,999 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:19:27,016 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:19:27,016 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:19:27,017 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:21:33,675 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:21:33,683 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:21:33,684 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:21:33,685 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:21:33,690 - ERROR - task_manager - expense_card_balance - Line 60 - Error crediting card 2234567812345608 for amount 15
+2025-03-07 05:25:02,759 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:25:02,767 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:25:02,768 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:25:02,769 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:25:02,775 - ERROR - task_manager - expense_card_balance - Line 60 - Error crediting card 2234567812345608 for amount 15
+2025-03-07 05:28:24,048 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:28:24,076 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:28:24,079 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:28:24,081 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:28:24,089 - INFO - task_manager - income_card_balance - Line 106 - Balance updated: card_id=20, new_balance=215.00
+2025-03-07 05:28:24,089 - INFO - task_manager - card_to_card - Line 23 - expense_sender_id=23, income_receiver_id=20
+2025-03-07 05:28:24,089 - INFO - task_manager - card_to_card - Line 39 - Transaction: sender 23, receiver 20, amount 15, status success
+2025-03-07 05:28:24,099 - INFO - task_manager - card_to_card - Line 24 - After commit: source_id=23, dest_id=20, amount=15.0
+2025-03-07 05:29:54,755 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:29:54,775 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:29:54,775 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:29:54,776 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:30:42,806 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:30:42,821 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:30:42,823 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:30:42,825 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:30:42,825 - ERROR - task_manager - expense_card_balance - Line 41 - Insufficient funds on card 2244567812341608
+2025-03-07 05:30:52,773 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:30:52,775 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:30:52,776 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:30:52,785 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:31:58,294 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:31:58,300 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:31:58,301 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:31:58,302 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:31:58,302 - ERROR - task_manager - expense_card_balance - Line 41 - Insufficient funds on card 2244567812341608
+2025-03-07 05:32:24,837 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:32:24,840 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 05:32:24,841 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 05:32:24,843 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 05:32:24,854 - INFO - task_manager - income_card_balance - Line 106 - Balance updated: card_id=20, new_balance=225.00
+2025-03-07 05:32:24,854 - INFO - task_manager - card_to_card - Line 23 - expense_sender_id=23, income_receiver_id=20
+2025-03-07 05:32:24,855 - INFO - task_manager - card_to_card - Line 39 - Transaction: sender 23, receiver 20, amount 10, status success
+2025-03-07 05:32:24,861 - INFO - task_manager - card_to_card - Line 24 - After commit: source_id=23, dest_id=20, amount=10.0
+2025-03-07 06:36:02,959 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:02,998 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 06:36:03,001 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:03,002 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 06:36:03,012 - INFO - task_manager - income_card_balance - Line 106 - Balance updated: card_id=20, new_balance=225.00
+2025-03-07 06:36:03,012 - INFO - task_manager - card_to_card - Line 23 - expense_sender_id=20, income_receiver_id=20
+2025-03-07 06:36:03,012 - INFO - task_manager - card_to_card - Line 39 - Transaction: sender 20, receiver 20, amount 10, status success
+2025-03-07 06:36:03,017 - INFO - task_manager - card_to_card - Line 24 - After commit: source_id=20, dest_id=20, amount=10.0
+2025-03-07 06:36:08,106 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:08,107 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 06:36:08,108 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=FvpX8Zst6BSqW8m9nwGAeHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:08,110 - WARNING - task_manager - get_card_by_card_number - Line 138 - Card not found by PAN: user_id=1, card_number=FvpX8Zst6BSqW8m9nwGAeHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:08,111 - ERROR - task_manager - expense_card_balance - Line 26 - Receiver card 2234567892345608 not found
+2025-03-07 06:36:36,393 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:36,400 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 06:36:36,400 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=FvpX8Zst6BSqW8m9nwGAeHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:36,401 - WARNING - task_manager - get_card_by_card_number - Line 138 - Card not found by PAN: user_id=1, card_number=FvpX8Zst6BSqW8m9nwGAeHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:36,401 - ERROR - task_manager - expense_card_balance - Line 26 - Receiver card 2234567892345608 not found
+2025-03-07 06:36:48,162 - INFO - task_manager - get_all_cards - Line 42 - Getting all cards... user_id=1
+2025-03-07 06:36:48,168 - INFO - task_manager - get_all_cards - Line 45 - Found 2 cards for user_id=1
+2025-03-07 06:36:56,620 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:56,636 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 06:36:56,636 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:36:56,637 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 06:36:56,637 - ERROR - task_manager - expense_card_balance - Line 41 - Insufficient funds on card 2234567812345608
+2025-03-07 06:41:09,052 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=be7hYlixyxE0LOXCD4kbKnnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:41:09,059 - WARNING - task_manager - get_card_by_card_number - Line 138 - Card not found by PAN: user_id=1, card_number=be7hYlixyxE0LOXCD4kbKnnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:41:09,060 - ERROR - task_manager - expense_card_balance - Line 18 - Sender card 2234****5608 not found
+2025-03-07 06:46:00,834 - INFO - task_manager - get_all_cards - Line 42 - Getting all cards... user_id=1
+2025-03-07 06:46:00,841 - INFO - task_manager - get_all_cards - Line 45 - Found 2 cards for user_id=1
+2025-03-07 06:46:19,529 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:46:19,533 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 06:46:19,534 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:46:19,535 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 06:46:19,549 - INFO - task_manager - income_card_balance - Line 106 - Balance updated: card_id=23, new_balance=75.00
+2025-03-07 06:46:19,549 - INFO - task_manager - card_to_card - Line 8 - expense_sender_id=20, income_receiver_id=23
+2025-03-07 06:46:19,550 - INFO - task_manager - card_to_card - Line 24 - Transaction: sender 20, receiver 23, amount 75, status success
+2025-03-07 06:46:19,558 - INFO - task_manager - card_to_card - Line 24 - After commit: source_id=20, dest_id=23, amount=75.0
+2025-03-07 06:46:29,110 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:46:29,112 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 06:46:29,112 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=sgwVoLefVCDsDPJ2v2H6UXnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:46:29,113 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=23, user_id=1
+2025-03-07 06:46:29,114 - ERROR - task_manager - expense_card_balance - Line 121 - Insufficient funds on card 2234****5608
+2025-03-07 06:46:39,092 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=
+2025-03-07 06:46:39,094 - INFO - task_manager - get_card_by_card_number - Line 140 - Card found: id=20, user_id=1
+2025-03-07 06:46:39,095 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=T+siAem2i6d0SxHPaIYld3nsGqE78SZr5s239GSHXCY=
+2025-03-07 06:46:39,097 - WARNING - task_manager - get_card_by_card_number - Line 138 - Card not found by PAN: user_id=1, card_number=T+siAem2i6d0SxHPaIYld3nsGqE78SZr5s239GSHXCY=
+2025-03-07 06:46:39,097 - ERROR - task_manager - expense_card_balance - Line 106 - Receiver card 2244****1608 not found
