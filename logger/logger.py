@@ -11,7 +11,7 @@ os.makedirs(log_dir, exist_ok=True)
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(name)s - %(funcName)s - Line %(lineno)d - %(message)s"
 
 # Создание логгера
-logger = logging.getLogger("task_manager")
+logger = logging.getLogger("pulnest_app")
 logger.setLevel(logging.INFO)  # Уровень логирования
 
 # Консольный обработчик

@@ -1,0 +1,115 @@
+2025-03-08 02:13:35,525 - WARNING - task_manager - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:13:35,530 - WARNING - task_manager - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:15:17,978 - WARNING - task_manager - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:15:17,979 - WARNING - task_manager - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:15:53,981 - WARNING - task_manager - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:15:53,989 - WARNING - task_manager - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:15:54,274 - ERROR - task_manager - create_user - Line 19 - Error creating user: (psycopg2.errors.NumericValueOutOfRange) integer out of range
+
+[SQL: INSERT INTO users (name, surname, email, phone, password, role, is_verified, created_at, updated_at, deleted_at) VALUES (%(name)s, %(surname)s, %(email)s, %(phone)s, %(password)s, %(role)s, %(is_verified)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING users.id]
+[parameters: {'name': 'Mekhrona', 'surname': 'Niyozova', 'email': 'mehrona.nm@gmail.com', 'phone': 992929929292, 'password': '$2b$12$fjxMIjxcBb0TYfsQc6NrfeGd30oSIVg20O5.mu.QKYmkebaP46jUC', 'role': 'user', 'is_verified': False, 'created_at': datetime.datetime(2025, 3, 8, 2, 15, 54, 257649), 'updated_at': datetime.datetime(2025, 3, 8, 2, 15, 54, 257649), 'deleted_at': datetime.datetime(2025, 3, 8, 2, 15, 54, 257649)}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 02:18:52,175 - WARNING - task_manager - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:18:52,175 - WARNING - task_manager - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:18:52,424 - ERROR - task_manager - create_user - Line 19 - Error creating user: (psycopg2.errors.NumericValueOutOfRange) integer out of range
+
+[SQL: INSERT INTO users (name, surname, email, phone, password, role, is_verified, created_at, updated_at, deleted_at) VALUES (%(name)s, %(surname)s, %(email)s, %(phone)s, %(password)s, %(role)s, %(is_verified)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING users.id]
+[parameters: {'name': 'Mekhrona', 'surname': 'Niyozova', 'email': 'mehrona.nm@gmail.com', 'phone': 992929929292, 'password': '$2b$12$u5U0lQeqNxrF4ZBQBjKNMOnGe7/pcLpphTtSLPvJ7JI2WrdTSqUUC', 'role': 'user', 'is_verified': False, 'created_at': datetime.datetime(2025, 3, 8, 2, 18, 52, 424169), 'updated_at': datetime.datetime(2025, 3, 8, 2, 18, 52, 424169), 'deleted_at': datetime.datetime(2025, 3, 8, 2, 18, 52, 424169)}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 02:19:11,185 - WARNING - task_manager - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:19:11,185 - WARNING - task_manager - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:19:11,446 - ERROR - task_manager - create_user - Line 19 - Error creating user: (psycopg2.errors.NumericValueOutOfRange) integer out of range
+
+[SQL: INSERT INTO users (name, surname, email, phone, password, role, is_verified, created_at, updated_at, deleted_at) VALUES (%(name)s, %(surname)s, %(email)s, %(phone)s, %(password)s, %(role)s, %(is_verified)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING users.id]
+[parameters: {'name': 'Mekhrona', 'surname': 'Niyozova', 'email': 'mehrona.nm@gmail.com', 'phone': 992929929292, 'password': '$2b$12$NQaURY.8WQBjXvHepYCwX.oT/MLX8VAFhddZLzkm4YofNmjPL.9LC', 'role': 'user', 'is_verified': False, 'created_at': datetime.datetime(2025, 3, 8, 2, 19, 11, 446815), 'updated_at': datetime.datetime(2025, 3, 8, 2, 19, 11, 446815), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 02:22:37,640 - WARNING - task_manager - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:22:37,642 - WARNING - task_manager - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:22:38,233 - ERROR - task_manager - create_user - Line 19 - Error creating user: (psycopg2.errors.NumericValueOutOfRange) integer out of range
+
+[SQL: INSERT INTO users (name, surname, email, phone, password, role, is_verified, created_at, updated_at, deleted_at) VALUES (%(name)s, %(surname)s, %(email)s, %(phone)s, %(password)s, %(role)s, %(is_verified)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING users.id]
+[parameters: {'name': 'Mekhrona', 'surname': 'Niyozova', 'email': 'mehrona.nm@gmail.com', 'phone': 992929929292, 'password': '$2b$12$0WhMjxNbf5vyc4C8S7SAz.Zn/Crj9RIAGiHhZ5j5bUGlhahd.vplS', 'role': 'user', 'is_verified': False, 'created_at': datetime.datetime(2025, 3, 8, 2, 22, 38, 229997), 'updated_at': datetime.datetime(2025, 3, 8, 2, 22, 38, 230999), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 02:23:05,437 - WARNING - pulnest_app - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:23:05,437 - WARNING - pulnest_app - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:23:05,685 - ERROR - pulnest_app - create_user - Line 19 - Error creating user: (psycopg2.errors.NumericValueOutOfRange) integer out of range
+
+[SQL: INSERT INTO users (name, surname, email, phone, password, role, is_verified, created_at, updated_at, deleted_at) VALUES (%(name)s, %(surname)s, %(email)s, %(phone)s, %(password)s, %(role)s, %(is_verified)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING users.id]
+[parameters: {'name': 'Mekhrona', 'surname': 'Niyozova', 'email': 'mehrona.nm@gmail.com', 'phone': 992929929292, 'password': '$2b$12$29zpqLEiYBs3GA3p4NDVDeBSK0IkU06.tqOsFsRXLb5qbKPGwL8Gu', 'role': 'user', 'is_verified': False, 'created_at': datetime.datetime(2025, 3, 8, 2, 23, 5, 683149), 'updated_at': datetime.datetime(2025, 3, 8, 2, 23, 5, 685153), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 02:23:50,652 - WARNING - pulnest_app - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:23:50,654 - WARNING - pulnest_app - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:23:50,905 - ERROR - pulnest_app - create_user - Line 19 - Error creating user: (psycopg2.errors.NumericValueOutOfRange) integer out of range
+
+[SQL: INSERT INTO users (name, surname, email, phone, password, role, is_verified, created_at, updated_at, deleted_at) VALUES (%(name)s, %(surname)s, %(email)s, %(phone)s, %(password)s, %(role)s, %(is_verified)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING users.id]
+[parameters: {'name': 'Mekhrona', 'surname': 'Niyozova', 'email': 'mehrona.nm@gmail.com', 'phone': 992929929292, 'password': '$2b$12$kDtkKyM60a8zf5q806zMv.HQZHJ6fcwH33RiCGYx/tp6cYHB28OQy', 'role': 'user', 'is_verified': False, 'created_at': datetime.datetime(2025, 3, 8, 2, 23, 50, 897511), 'updated_at': datetime.datetime(2025, 3, 8, 2, 23, 50, 897511), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 02:24:31,730 - ERROR - pulnest_app - get_user_by_phone - Line 47 - Error fetching user by phone 992929929292: (psycopg2.errors.UndefinedFunction) operator does not exist: character varying = bigint
+LINE 3: WHERE users.phone = 992929929292 
+                          ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: SELECT users.id AS users_id, users.name AS users_name, users.surname AS users_surname, users.email AS users_email, users.phone AS users_phone, users.password AS users_password, users.role AS users_role, users.is_verified AS users_is_verified, users.created_at AS users_created_at, users.updated_at AS users_updated_at, users.deleted_at AS users_deleted_at 
+FROM users 
+WHERE users.phone = %(phone_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'phone_1': 992929929292, 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-03-08 02:25:55,179 - ERROR - pulnest_app - get_user_by_phone - Line 47 - Error fetching user by phone 992929929292: (psycopg2.errors.UndefinedFunction) operator does not exist: character varying = bigint
+LINE 3: WHERE users.phone = 992929929292 
+                          ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: SELECT users.id AS users_id, users.name AS users_name, users.surname AS users_surname, users.email AS users_email, users.phone AS users_phone, users.password AS users_password, users.role AS users_role, users.is_verified AS users_is_verified, users.created_at AS users_created_at, users.updated_at AS users_updated_at, users.deleted_at AS users_deleted_at 
+FROM users 
+WHERE users.phone = %(phone_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'phone_1': 992929929292, 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-03-08 02:26:10,811 - WARNING - pulnest_app - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:26:10,815 - WARNING - pulnest_app - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:26:11,090 - INFO - pulnest_app - create_user - Line 15 - User created successfully with ID: 1
+2025-03-08 02:26:11,090 - INFO - pulnest_app - get_user_by_email - Line 28 - User found by email: mehrona.nm@gmail.com
+2025-03-08 02:26:11,096 - INFO - pulnest_app - save_verification_code - Line 77 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 02:31:15,401 - INFO - pulnest_app - get_verification_code - Line 89 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 02:31:15,423 - INFO - pulnest_app - delete_verification_code - Line 102 - Verification code deleted for email: mehrona.nm@gmail.com
+2025-03-08 02:32:50,411 - WARNING - pulnest_app - get_verification_code - Line 91 - No verification code found for email: mehrona.nm@gmail.com
+2025-03-08 02:33:32,160 - INFO - pulnest_app - get_user_by_phone - Line 42 - User found by phone: 992929929292
+2025-03-08 02:33:32,166 - INFO - pulnest_app - get_user_by_email - Line 28 - User found by email: mehrona.nm@gmail.com
+2025-03-08 02:34:42,282 - WARNING - pulnest_app - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:34:42,287 - WARNING - pulnest_app - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:34:42,791 - INFO - pulnest_app - create_user - Line 15 - User created successfully with ID: 1
+2025-03-08 02:34:42,791 - INFO - pulnest_app - get_user_by_email - Line 28 - User found by email: mehrona.nm@gmail.com
+2025-03-08 02:34:42,796 - INFO - pulnest_app - save_verification_code - Line 77 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 02:34:53,926 - INFO - pulnest_app - get_verification_code - Line 89 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 02:35:33,258 - INFO - pulnest_app - get_verification_code - Line 89 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 02:35:33,279 - INFO - pulnest_app - delete_verification_code - Line 102 - Verification code deleted for email: mehrona.nm@gmail.com
+2025-03-08 02:42:25,263 - WARNING - pulnest_app - get_verification_code - Line 91 - No verification code found for email: mehrona.nm@gmail.com
+2025-03-08 02:43:54,136 - WARNING - pulnest_app - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 02:43:54,141 - WARNING - pulnest_app - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 02:43:54,687 - INFO - pulnest_app - create_user - Line 15 - User created successfully with ID: 1
+2025-03-08 02:45:49,560 - INFO - pulnest_app - get_user_by_email - Line 28 - User found by email: mehrona.nm@gmail.com
+2025-03-08 02:45:49,563 - INFO - pulnest_app - get_user_by_email - Line 28 - User found by email: mehrona.nm@gmail.com
+2025-03-08 02:45:49,571 - INFO - pulnest_app - save_verification_code - Line 77 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 02:47:39,095 - INFO - pulnest_app - get_verification_code - Line 89 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 02:47:39,113 - INFO - pulnest_app - delete_verification_code - Line 102 - Verification code deleted for email: mehrona.nm@gmail.com
+2025-03-08 03:01:20,949 - WARNING - pulnest_app - get_user_by_phone - Line 44 - No user found by phone: 992929929292
+2025-03-08 03:01:20,949 - WARNING - pulnest_app - get_user_by_email - Line 30 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 03:01:21,290 - INFO - pulnest_app - create_user - Line 15 - User created successfully with ID: 2
+2025-03-08 03:01:33,346 - INFO - pulnest_app - get_user_by_email - Line 28 - User found by email: mehrona.nm@gmail.com
+2025-03-08 03:01:33,348 - INFO - pulnest_app - get_user_by_email - Line 28 - User found by email: mehrona.nm@gmail.com
+2025-03-08 03:01:33,366 - INFO - pulnest_app - save_verification_code - Line 95 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 03:01:53,101 - INFO - pulnest_app - get_verification_code - Line 107 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 03:01:53,129 - INFO - pulnest_app - verify_user - Line 71 - User mehrona.nm@gmail.com verified successfully.
+2025-03-08 03:01:53,133 - INFO - pulnest_app - delete_verification_code - Line 120 - Verification code deleted for email: mehrona.nm@gmail.com
+2025-03-08 03:10:38,477 - INFO - pulnest_app - get_user_by_phone - Line 42 - User found by phone: 992929929292
+2025-03-08 03:18:03,308 - WARNING - pulnest_app - get_user_by_phone - Line 43 - No user found by phone: 992929929292
+2025-03-08 03:18:03,308 - WARNING - pulnest_app - get_user_by_email - Line 29 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 03:18:03,782 - INFO - pulnest_app - create_user - Line 14 - User created successfully with ID: 3
+2025-03-08 03:18:14,388 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 03:18:14,390 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 03:18:14,402 - INFO - pulnest_app - save_verification_code - Line 94 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 03:18:33,999 - INFO - pulnest_app - get_verification_code - Line 106 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 03:18:34,011 - INFO - pulnest_app - verify_user - Line 70 - User mehrona.nm@gmail.com verified successfully.
+2025-03-08 03:18:34,015 - INFO - pulnest_app - delete_verification_code - Line 119 - Verification code deleted for email: mehrona.nm@gmail.com
+2025-03-08 03:18:41,108 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 992929929292
