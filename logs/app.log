@@ -414,3 +414,8 @@ DETAIL:  Key (card_number)=(EQrn56iyvlXyw3ITVORKhHnsGqE78SZr5s239GSHXCY=) alread
 2025-03-07 06:46:39,095 - INFO - task_manager - get_card_by_card_number - Line 133 - Searching card by PAN... user_id=1, card_number=T+siAem2i6d0SxHPaIYld3nsGqE78SZr5s239GSHXCY=
 2025-03-07 06:46:39,097 - WARNING - task_manager - get_card_by_card_number - Line 138 - Card not found by PAN: user_id=1, card_number=T+siAem2i6d0SxHPaIYld3nsGqE78SZr5s239GSHXCY=
 2025-03-07 06:46:39,097 - ERROR - task_manager - expense_card_balance - Line 106 - Receiver card 2244****1608 not found
+2025-03-07 12:45:39,312 - INFO - task_manager - get_all_cards - Line 42 - Getting all cards... user_id=1
+2025-03-07 12:45:39,354 - INFO - task_manager - get_all_cards - Line 45 - Found 2 cards for user_id=1
+2025-03-07 12:45:47,967 - INFO - task_manager - get_card_by_id - Line 29 - Getting card by ID... user_id=1, card_id=28
+2025-03-07 12:46:03,843 - INFO - task_manager - get_deleted_cards - Line 124 - Getting deleted cards... user_id=1
+2025-03-07 12:46:03,847 - INFO - task_manager - get_deleted_cards - Line 127 - Found 6 deleted cards for user_id=1
