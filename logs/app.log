@@ -181,3 +181,15 @@ LINE 1: ...e, created_at, updated_at, deleted_at) VALUES (6, '992929929...
 2025-03-08 04:35:40,160 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
 2025-03-08 04:35:40,181 - INFO - pulnest_app - create_wallet - Line 21 - Wallet created for user 1.
 2025-03-08 04:35:40,192 - INFO - pulnest_app - delete_verification_code - Line 119 - Verification code deleted for email: mehrona.nm@gmail.com
+2025-03-08 05:31:08,797 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 992929929292
+2025-03-08 05:33:05,746 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 992929929292
+2025-03-08 05:33:35,475 - INFO - pulnest_app - get_wallet_balance - Line 19 - Get users wallet balance. Request user: 1
+2025-03-08 05:33:35,483 - INFO - pulnest_app - get_wallet_by_user_id - Line 37 - Wallet found for user 1.
+2025-03-08 05:33:53,108 - INFO - pulnest_app - get_wallet_balance - Line 19 - Get users wallet balance. Request user: 1
+2025-03-08 05:33:53,111 - INFO - pulnest_app - get_wallet_by_user_id - Line 37 - Wallet found for user 1.
+2025-03-08 05:40:08,204 - INFO - pulnest_app - get_wallet_balance - Line 19 - Get users wallet balance. Request user: 1
+2025-03-08 05:40:08,222 - INFO - pulnest_app - get_wallet_by_user_id - Line 37 - Wallet found for user 1.
+2025-03-08 05:40:08,225 - INFO - pulnest_app - get_wallet_balance - Line 11 - Wallet balance retrieved for user 1.
+2025-03-08 05:40:21,017 - INFO - pulnest_app - get_wallet_balance - Line 19 - Get users wallet balance. Request user: 1
+2025-03-08 05:40:21,020 - INFO - pulnest_app - get_wallet_by_user_id - Line 37 - Wallet found for user 1.
+2025-03-08 05:40:21,021 - INFO - pulnest_app - get_wallet_balance - Line 11 - Wallet balance retrieved for user 1.
