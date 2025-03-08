@@ -113,3 +113,71 @@ WHERE users.phone = %(phone_1)s
 2025-03-08 03:18:34,011 - INFO - pulnest_app - verify_user - Line 70 - User mehrona.nm@gmail.com verified successfully.
 2025-03-08 03:18:34,015 - INFO - pulnest_app - delete_verification_code - Line 119 - Verification code deleted for email: mehrona.nm@gmail.com
 2025-03-08 03:18:41,108 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 992929929292
+2025-03-08 03:36:00,474 - WARNING - pulnest_app - get_user_by_phone - Line 43 - No user found by phone: 992929929292
+2025-03-08 03:36:00,476 - WARNING - pulnest_app - get_user_by_email - Line 29 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 03:36:00,839 - INFO - pulnest_app - create_user - Line 14 - User created successfully with ID: 4
+2025-03-08 03:36:04,157 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 03:36:04,159 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 03:36:04,171 - INFO - pulnest_app - save_verification_code - Line 94 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 03:36:21,955 - INFO - pulnest_app - get_verification_code - Line 106 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 03:36:21,967 - INFO - pulnest_app - verify_user - Line 70 - User mehrona.nm@gmail.com verified successfully.
+2025-03-08 03:36:21,969 - INFO - pulnest_app - delete_verification_code - Line 119 - Verification code deleted for email: mehrona.nm@gmail.com
+2025-03-08 03:36:25,862 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 992929929292
+2025-03-08 04:25:57,839 - WARNING - pulnest_app - get_user_by_phone - Line 43 - No user found by phone: 992929929292
+2025-03-08 04:25:57,847 - WARNING - pulnest_app - get_user_by_email - Line 29 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 04:25:58,442 - INFO - pulnest_app - create_user - Line 14 - User created successfully with ID: 5
+2025-03-08 04:26:01,111 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:26:01,115 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:26:01,138 - INFO - pulnest_app - save_verification_code - Line 94 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 04:26:18,690 - INFO - pulnest_app - get_verification_code - Line 106 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 04:26:18,704 - INFO - pulnest_app - verify_user - Line 70 - User mehrona.nm@gmail.com verified successfully.
+2025-03-08 04:26:18,706 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:26:18,714 - ERROR - pulnest_app - create_wallet - Line 25 - Error creating wallet for user 5: (psycopg2.errors.NumericValueOutOfRange) value "992929929292" is out of range for type integer
+LINE 1: ...e, created_at, updated_at, deleted_at) VALUES (5, '992929929...
+                                                             ^
+
+[SQL: INSERT INTO wallets (user_id, phone, balance, bonus_balance, created_at, updated_at, deleted_at) VALUES (%(user_id)s, %(phone)s, %(balance)s, %(bonus_balance)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING wallets.id]
+[parameters: {'user_id': 5, 'phone': '992929929292', 'balance': 0, 'bonus_balance': 0, 'created_at': datetime.datetime(2025, 3, 8, 4, 26, 18, 711882), 'updated_at': datetime.datetime(2025, 3, 8, 4, 26, 18, 711882), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 04:30:36,293 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 992929929292
+2025-03-08 04:30:36,300 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:30:39,803 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:30:39,804 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:30:39,820 - INFO - pulnest_app - save_verification_code - Line 94 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 04:30:54,783 - INFO - pulnest_app - get_verification_code - Line 106 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 04:30:54,786 - INFO - pulnest_app - verify_user - Line 70 - User mehrona.nm@gmail.com verified successfully.
+2025-03-08 04:30:54,789 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:30:54,793 - ERROR - pulnest_app - create_wallet - Line 25 - Error creating wallet for user 5: (psycopg2.errors.NumericValueOutOfRange) value "992929929292" is out of range for type integer
+LINE 1: ...e, created_at, updated_at, deleted_at) VALUES (5, '992929929...
+                                                             ^
+
+[SQL: INSERT INTO wallets (user_id, phone, balance, bonus_balance, created_at, updated_at, deleted_at) VALUES (%(user_id)s, %(phone)s, %(balance)s, %(bonus_balance)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING wallets.id]
+[parameters: {'user_id': 5, 'phone': '992929929292', 'balance': 0, 'bonus_balance': 0, 'created_at': datetime.datetime(2025, 3, 8, 4, 30, 54, 792721), 'updated_at': datetime.datetime(2025, 3, 8, 4, 30, 54, 792721), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 04:33:32,135 - WARNING - pulnest_app - get_user_by_phone - Line 43 - No user found by phone: 992929929292
+2025-03-08 04:33:32,137 - WARNING - pulnest_app - get_user_by_email - Line 29 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 04:33:32,405 - INFO - pulnest_app - create_user - Line 14 - User created successfully with ID: 6
+2025-03-08 04:33:36,519 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:33:36,522 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:33:36,535 - INFO - pulnest_app - save_verification_code - Line 94 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 04:33:56,000 - INFO - pulnest_app - get_verification_code - Line 106 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 04:33:56,012 - INFO - pulnest_app - verify_user - Line 70 - User mehrona.nm@gmail.com verified successfully.
+2025-03-08 04:33:56,013 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:33:56,015 - ERROR - pulnest_app - create_wallet - Line 25 - Error creating wallet for user 6: (psycopg2.errors.NumericValueOutOfRange) value "992929929292" is out of range for type integer
+LINE 1: ...e, created_at, updated_at, deleted_at) VALUES (6, '992929929...
+                                                             ^
+
+[SQL: INSERT INTO wallets (user_id, phone, balance, bonus_balance, created_at, updated_at, deleted_at) VALUES (%(user_id)s, %(phone)s, %(balance)s, %(bonus_balance)s, %(created_at)s, %(updated_at)s, %(deleted_at)s) RETURNING wallets.id]
+[parameters: {'user_id': 6, 'phone': '992929929292', 'balance': 0, 'bonus_balance': 0, 'created_at': datetime.datetime(2025, 3, 8, 4, 33, 56, 14849), 'updated_at': datetime.datetime(2025, 3, 8, 4, 33, 56, 14849), 'deleted_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+2025-03-08 04:35:11,227 - WARNING - pulnest_app - get_user_by_phone - Line 43 - No user found by phone: 992929929292
+2025-03-08 04:35:11,233 - WARNING - pulnest_app - get_user_by_email - Line 29 - No user found by email: mehrona.nm@gmail.com
+2025-03-08 04:35:11,551 - INFO - pulnest_app - create_user - Line 14 - User created successfully with ID: 1
+2025-03-08 04:35:14,208 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:35:14,210 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:35:14,224 - INFO - pulnest_app - save_verification_code - Line 94 - Verification code saved for email: mehrona.nm@gmail.com
+2025-03-08 04:35:40,128 - INFO - pulnest_app - get_verification_code - Line 106 - Verification code found for email: mehrona.nm@gmail.com
+2025-03-08 04:35:40,158 - INFO - pulnest_app - verify_user - Line 70 - User mehrona.nm@gmail.com verified successfully.
+2025-03-08 04:35:40,160 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mehrona.nm@gmail.com
+2025-03-08 04:35:40,181 - INFO - pulnest_app - create_wallet - Line 21 - Wallet created for user 1.
+2025-03-08 04:35:40,192 - INFO - pulnest_app - delete_verification_code - Line 119 - Verification code deleted for email: mehrona.nm@gmail.com

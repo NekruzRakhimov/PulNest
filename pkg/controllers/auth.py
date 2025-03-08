@@ -60,7 +60,7 @@ def verify_user(verification_request: VerificationRequest):
     # Verify the user
     if user_service.verify_user(verification_request.email, verification_request.verification_code):
         return {
-            "message": "User verified successfully"
+            "message": "User verified and wallet created successfully "
         }
     else:
         raise HTTPException(

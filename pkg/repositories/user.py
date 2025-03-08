@@ -122,3 +122,5 @@ def delete_verification_code(email: str):
             db.rollback()
             logger.error(f"Error deleting verification code for email {email}: {e}")
             raise
+
+# delete user

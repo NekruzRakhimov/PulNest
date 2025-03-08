@@ -1,13 +1,13 @@
 import datetime
 import random
 import string
-from sqlalchemy.orm import Session
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from utils.email_utils import send_email 
 from logger.logger import logger
 from utils.hash import hash_password, verify_password
 from pkg.repositories import user as user_repository
+from pkg.repositories import wallet as wallet_repository
 from schemas.user import UserSchema
 from db.models import User
 
@@ -74,6 +74,8 @@ def verify_user(email: str, user_code: str):
 
     if user_code == db_code.code:
         user_repository.verify_user(email)
+        user = get_user_by_email(email=email)
+        wallet_repository.create_wallet(user.id, user.phone)
         user_repository.delete_verification_code(email)  # Clean up used code
         return True
 

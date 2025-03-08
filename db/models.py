@@ -39,7 +39,7 @@ class Wallet(Base):
     __tablename__ = "wallets"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    phone = Column(Integer, unique=True, nullable=False)
+    phone = Column(String, unique=True, nullable=False)
     balance = Column(Numeric(20, 2), nullable=False, default=0)
     bonus_balance = Column(Numeric(12, 2), nullable=False, default=0)
     created_at = Column(DateTime, default=datetime.datetime.now)
