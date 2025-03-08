@@ -93,10 +93,10 @@ class Categorie(Base):
     deleted_at = Column(DateTime, nullable=True)
 
 
-
 def migrate_tables():
     try:
         Base.metadata.create_all(bind=engine)
-        print(f"Миграции таблиц успешна")
+        print("Миграции прошли успешно ✅")
+
     except Exception as e:
         print(f"Ошибка во время миграции: {e}")
