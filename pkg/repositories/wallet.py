@@ -62,66 +62,66 @@ def get_wallet_by_phone(phone):
             raise
 
 
-def update_wallet_balance(wallet_id, new_balance):
+def update_wallet_balance(wallet, new_balance):
     """
     Update the balance of a wallet.
     """
     with Session(bind=engine) as db:
         try:
-            wallet = db.query(Wallet).filter(Wallet.id == wallet_id, Wallet.deleted_at == None).first()
+            wallet = db.query(Wallet).filter(Wallet.id == wallet.id, Wallet.deleted_at == None).first()
             if wallet:
                 wallet.balance = new_balance
                 wallet.updated_at = datetime.now()
                 db.commit()
-                logger.info(f"Wallet {wallet_id} balance updated to {new_balance}.")
+                logger.info(f"Wallet {wallet.id} balance updated to {new_balance}.")
                 return wallet
             else:
-                logger.warning(f"No wallet found with ID {wallet_id}.")
+                logger.warning(f"No wallet found with ID {wallet.id}.")
                 return None
         except Exception as e:
             db.rollback()
-            logger.error(f"Error updating balance for wallet {wallet_id}: {e}")
+            logger.error(f"Error updating balance for wallet {wallet.id}: {e}")
             raise
 
 
-def update_wallet_bonus_balance(wallet_id, new_bonus_balance):
+def update_wallet_bonus_balance(wallet, new_bonus_balance):
     """
     Update the bonus balance of a wallet.
     """
     with Session(bind=engine) as db:
         try:
-            wallet = db.query(Wallet).filter(Wallet.id == wallet_id, Wallet.deleted_at == None).first()
+            wallet = db.query(Wallet).filter(Wallet.id == wallet.id, Wallet.deleted_at == None).first()
             if wallet:
                 wallet.bonus_balance = new_bonus_balance
                 wallet.updated_at = datetime.now()
                 db.commit()
-                logger.info(f"Wallet {wallet_id} bonus balance updated to {new_bonus_balance}.")
+                logger.info(f"Wallet {wallet.id} bonus balance updated to {new_bonus_balance}.")
                 return wallet
             else:
-                logger.warning(f"No wallet found with ID {wallet_id}.")
+                logger.warning(f"No wallet found with ID {wallet.id}.")
                 return None
         except Exception as e:
             db.rollback()
-            logger.error(f"Error updating bonus balance for wallet {wallet_id}: {e}")
+            logger.error(f"Error updating bonus balance for wallet {wallet.id}: {e}")
             raise
 
 
-def soft_delete_wallet(wallet_id):
+def soft_delete_wallet(wallet):
     """
     Soft delete a wallet by marking it as deleted.
     """
     with Session(bind=engine) as db:
         try:
-            wallet = db.query(Wallet).filter(Wallet.id == wallet_id, Wallet.deleted_at == None).first()
+            wallet = db.query(Wallet).filter(Wallet.id == wallet.id, Wallet.deleted_at == None).first()
             if wallet:
                 wallet.deleted_at = datetime.now()
                 db.commit()
-                logger.info(f"Wallet {wallet_id} soft deleted.")
+                logger.info(f"Wallet {wallet.id} soft deleted.")
                 return wallet
             else:
-                logger.warning(f"No wallet found with ID {wallet_id}.")
+                logger.warning(f"No wallet found with ID {wallet.id}.")
                 return None
         except Exception as e:
             db.rollback()
-            logger.error(f"Error soft deleting wallet {wallet_id}: {e}")
+            logger.error(f"Error soft deleting wallet {wallet.id}: {e}")
             raise

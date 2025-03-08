@@ -6,7 +6,4 @@ class WalletBase(BaseModel):
     bonus_balance: float
 
 
-class WalletBalanceResponse(BaseModel):
-    balance: float
-    bonus_balance: float
 

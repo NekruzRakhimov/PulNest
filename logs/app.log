@@ -193,3 +193,19 @@ LINE 1: ...e, created_at, updated_at, deleted_at) VALUES (6, '992929929...
 2025-03-08 05:40:21,017 - INFO - pulnest_app - get_wallet_balance - Line 19 - Get users wallet balance. Request user: 1
 2025-03-08 05:40:21,020 - INFO - pulnest_app - get_wallet_by_user_id - Line 37 - Wallet found for user 1.
 2025-03-08 05:40:21,021 - INFO - pulnest_app - get_wallet_balance - Line 11 - Wallet balance retrieved for user 1.
+2025-03-08 18:10:06,695 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 992929929292
+2025-03-08 18:10:25,587 - INFO - pulnest_app - get_wallet_balance - Line 19 - Get users wallet balance. Request user: 1
+2025-03-08 18:10:25,594 - INFO - pulnest_app - get_wallet_by_user_id - Line 37 - Wallet found for user 1.
+2025-03-08 18:10:25,594 - INFO - pulnest_app - get_wallet_balance - Line 11 - Wallet balance retrieved for user 1.
+2025-03-08 18:11:27,879 - WARNING - pulnest_app - get_user_by_phone - Line 43 - No user found by phone: 992929929293
+2025-03-08 18:11:27,885 - WARNING - pulnest_app - get_user_by_email - Line 29 - No user found by email: mekhrona.niyozova@alif.tj
+2025-03-08 18:11:28,515 - INFO - pulnest_app - create_user - Line 14 - User created successfully with ID: 2
+2025-03-08 18:11:46,468 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mekhrona.niyozova@alif.tj
+2025-03-08 18:11:46,468 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mekhrona.niyozova@alif.tj
+2025-03-08 18:11:46,500 - INFO - pulnest_app - save_verification_code - Line 94 - Verification code saved for email: mekhrona.niyozova@alif.tj
+2025-03-08 18:12:30,198 - INFO - pulnest_app - get_verification_code - Line 106 - Verification code found for email: mekhrona.niyozova@alif.tj
+2025-03-08 18:12:30,226 - INFO - pulnest_app - verify_user - Line 70 - User mekhrona.niyozova@alif.tj verified successfully.
+2025-03-08 18:12:30,232 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: mekhrona.niyozova@alif.tj
+2025-03-08 18:12:30,238 - INFO - pulnest_app - create_wallet - Line 21 - Wallet created for user 2.
+2025-03-08 18:12:30,246 - INFO - pulnest_app - delete_verification_code - Line 119 - Verification code deleted for email: mekhrona.niyozova@alif.tj
+2025-03-08 18:13:24,681 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 992929929293
