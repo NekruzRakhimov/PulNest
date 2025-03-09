@@ -5,6 +5,10 @@
   "auth": {
     "secret_key": "mysecretkey",
     "algorithm": "HS256",
-    "access_token_expire_minutes": 30
+    "access_token_expire_minutes": 100
+  },
+  "email_credentials" : {
+       "email" : "pul.nest2025@gmail.com",
+       "password" : "aubc konn ofsv ccoy"
   }
 }

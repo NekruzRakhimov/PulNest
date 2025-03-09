@@ -7,12 +7,17 @@ class AuthSettings(BaseModel):
     algorithm: str
     access_token_expire_minutes: int
 
+class EmailCredentials(BaseModel):
+    email : str
+    password : str
+
 
 class Settings(BaseModel):
     database_url: str
     port: int
     host: str
     auth: AuthSettings
+    email_credentials : EmailCredentials
 
 
 # TODO: .env - переменные окружения
