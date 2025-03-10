@@ -64,6 +64,7 @@ class Transactions(Base):
     __tablename__ = "transactions"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    tran_type = Column(String, nullable=False) # income, expense
     source_type = Column(String, nullable=False)  
     source_id = Column(Integer, nullable=False)
     source_number = Column(String, nullable=False) #добавила
@@ -71,6 +72,8 @@ class Transactions(Base):
     dest_type = Column(String, nullable=False)  
     dest_id = Column(Integer, nullable=False)
     dest_number = Column(String, nullable=False) #добавила
+    comment = Column(String) 
+    correlation_id = Column(Integer)
     status = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.now)
     
