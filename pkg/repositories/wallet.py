@@ -6,30 +6,23 @@ from logger.logger import logger
 from db.postgres import engine
 
 
-def create_wallet(user_id, phone):
+def create_wallet(wallet):
     """
     Create a new wallet for a user.
     """
     with Session(bind=engine) as db:
         try:
-            wallet = Wallet(
-                user_id=user_id,
-                phone=str(phone)
-            )
             db.add(wallet)
             db.commit()
-            logger.info(f"Wallet created for user {user_id}.")
+            logger.info(f"Wallet created for user {wallet.user_id}.")
             return wallet
         except Exception as e:
             db.rollback()
-            logger.error(f"Error creating wallet for user {user_id}: {e}")
+            logger.error(f"Error creating wallet for user {wallet.user_id}: {e}")
             raise
 
 
 def get_wallet_by_user_id(user_id):
-    """
-    Retrieve a wallet by user ID.
-    """
     with Session(bind=engine) as db:
         try:
             wallet = db.query(Wallet).filter(Wallet.user_id == user_id, Wallet.deleted_at == None).first()
