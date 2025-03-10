@@ -19,7 +19,7 @@ class User(Base):
     phone = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     role = Column(String, default="user")
-    is_verified = Column(Boolean, nullable=False, default=False)
+    is_verified = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.datetime.now)
     updated_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
@@ -40,8 +40,8 @@ class Wallet(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     phone = Column(String, unique=True, nullable=False)
-    balance = Column(Numeric(12, 2), nullable=False, default=0)
-    bonus_balance = Column(Numeric(12, 2), nullable=False, default=0)
+    balance = Column(Numeric(12, 2), default=0)
+    bonus_balance = Column(Numeric(12, 2),default=0)
     created_at = Column(DateTime, default=datetime.datetime.now)
     updated_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
@@ -60,15 +60,17 @@ class Card(Base):
     deleted_at = Column(DateTime, nullable=True)
 
 
-class Transaction(Base):
+class Transactions(Base):
     __tablename__ = "transactions"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    source_type = Column(String, nullable=False)  # card/wallet
+    source_type = Column(String, nullable=False)  
     source_id = Column(Integer, nullable=False)
+    source_number = Column(String, nullable=False) #добавила
     amount = Column(Float, nullable=False)
-    dest_type = Column(String, nullable=False)  # card/wallet
+    dest_type = Column(String, nullable=False)  
     dest_id = Column(Integer, nullable=False)
+    dest_number = Column(String, nullable=False) #добавила
     status = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.now)
     
