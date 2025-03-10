@@ -8,6 +8,7 @@ from pkg.controllers.auth import router as auth_router
 from pkg.controllers.wallet import router as wallet_router
 from pkg.controllers.cards import router as cards_router
 from pkg.controllers.transactions import router as transactions_router
+from pkg.controllers.history import router as history_router
 
 
 app = FastAPI() 
@@ -25,6 +26,7 @@ if __name__ == "__main__":
     app.include_router(wallet_router)
     app.include_router(cards_router)
     app.include_router(transactions_router)
+    app.include_router(history_router)
 
     
 

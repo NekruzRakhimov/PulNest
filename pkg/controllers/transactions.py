@@ -1,17 +1,19 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, Depends
 from fastapi.responses import JSONResponse
 
+from pkg.controllers.middlewares import get_current_user
 from pkg.services import cards as cards_service
 from pkg.services import transactions as transactions_service
 from schemas.cards import CardTransferCard
+from utils.auth import TokenPayload
 
 router = APIRouter()
 
 from logger.logger import logger
 
 @router.put("/card-card/", summary="Transfer money from card to card", tags=["transactions"])
-def expense_card_balance(request: CardTransferCard):
-    user_id = 1  
+def expense_card_balance(request: CardTransferCard, payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id
 
     sender_card = cards_service.get_card_by_card_number(user_id, request.sender_card_number)
     if sender_card is None:
@@ -71,7 +73,7 @@ def expense_card_balance(request: CardTransferCard):
 
     # Фиксация успешной транзакции
     transaction_status = "success"
-    transactions_service.card_to_card(user_id, sender_card.id, receiver_card.id, request.amount, transaction_status)
+    transactions_service.card_to_card(user_id, sender_card.id, sender_card.card_number, receiver_card.id, receiver_card.card_number, request.amount, transaction_status) 
 
     return JSONResponse(
         content={'message': 'Transaction successful'},
