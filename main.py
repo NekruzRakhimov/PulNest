@@ -11,6 +11,7 @@ from pkg.controllers.transactions import router as transactions_router
 from pkg.controllers.history import router as history_router
 
 
+
 app = FastAPI() 
 
 
@@ -27,6 +28,7 @@ if __name__ == "__main__":
     app.include_router(cards_router)
     app.include_router(transactions_router)
     app.include_router(history_router)
+
 
     
 
