@@ -1,19 +1,19 @@
-from fastapi import APIRouter, status
-
+from fastapi import APIRouter, status, Depends
 from fastapi.responses import JSONResponse
 
 from logger.logger import logger
-# from pkg.controllers.user import get_current_user, TokenPayload
+from pkg.controllers.middlewares import get_current_user
 from pkg.services import cards as cards_service
 from schemas.cards import CardCreate, CardUpdate
+from utils.auth import TokenPayload
 
 
 router = APIRouter()
 
 
 @router.post("/cards", summary="Create new card", tags=["cards"])
-def add_card(card: CardCreate):
-    user_id = 1  
+def add_card(card: CardCreate, payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id
     new_card = cards_service.add_card(user_id, card)
     
     if new_card is None:
@@ -30,8 +30,8 @@ def add_card(card: CardCreate):
 
 
 @router.get("/cards", summary="Get all cards", tags=["cards"])
-def get_all_cards():
-    user_id = 1  
+def get_all_cards(payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id 
     cards = cards_service.get_all_cards(user_id)
     
     cards_dict = [card.model_dump() for card in cards]
@@ -45,8 +45,8 @@ def get_all_cards():
 
 
 @router.put("/cards/{card_id}/update", summary="Update card by ID", tags=["cards"])
-def update_card(card_id: int, card: CardUpdate):
-    user_id = 1
+def update_card(card_id: int, card: CardUpdate, payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id 
 
     got_by_id = cards_service.get_card_by_id(user_id, card_id)
     if got_by_id is None:
@@ -70,8 +70,8 @@ def update_card(card_id: int, card: CardUpdate):
 
 
 @router.delete("/cards/{card_id}/delete", summary="Delete task by ID", tags=["cards"])
-def delete_task(card_id: int):
-    user_id = 1
+def delete_task(card_id: int, payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id 
 
     card = cards_service.get_card_by_id(user_id, card_id)
     if card is None:
@@ -97,8 +97,8 @@ def delete_task(card_id: int):
 
 
 @router.get("/deleted-cards", summary="Get all deleted cards", tags=["cards"])
-def get_deleted_cards():
-    user_id = 1  
+def get_deleted_cards(payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id   
     cards = cards_service.get_deleted_cards(user_id)
     
     cards_dict = [card.model_dump() for card in cards]
@@ -112,9 +112,9 @@ def get_deleted_cards():
 
 
 @router.get("/cards/{card_number}/number", summary="Get card by PAN", tags=["cards"])
-def get_card_by_number(card_number: str):
+def get_card_by_number(card_number: str, payload: TokenPayload = Depends(get_current_user)):
     logger.info(card_number)
-    user_id = 1 
+    user_id = payload.id 
     card = cards_service.get_card_by_card_number(user_id, card_number)
     if card is None:
         return JSONResponse(
@@ -130,8 +130,8 @@ def get_card_by_number(card_number: str):
 
 
 @router.get("/cards/{card_id}/details", summary="Get card by ID", tags=["cards"])
-def get_card_by_id(card_id: int):
-    user_id = 1 
+def get_card_by_id(card_id: int, payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id  
     card = cards_service.get_card_by_id(user_id, card_id)
 
     if card is None:
