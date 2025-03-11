@@ -25,5 +25,6 @@ def card_to_card(user_id, expense_sender_id, sender_card_number, income_receiver
 
     logger.info(f"Transaction: sender {expense_sender_id}, receiver {income_receiver_id}, amount {amount}, status {status}")
     transactions_repository.card_to_card(t)
+    
 
 

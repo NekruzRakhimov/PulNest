@@ -81,7 +81,7 @@ class Transactions(Base):
 class Service(Base):
     __tablename__ = "services"
     id = Column(Integer, primary_key=True)
-    merchant_name = Column(String, unique=True, nullable=False)
+    provider_name = Column(String, unique=True, nullable=False)
     balance = Column(Float, default=0)
     category_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
@@ -92,8 +92,7 @@ class Service(Base):
 class Category(Base):
     __tablename__ = "categories"
     id = Column(Integer, primary_key=True)
-    category = Column(String, nullable=False)
-    subcategory = Column(String, nullable=False)
+    name = Column(String, nullable=False, unique=True)
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
 

@@ -1,18 +1,17 @@
 from datetime import datetime
-from typing import List
+
 from logger.logger import logger
 from pkg.repositories import service as service_repository
 from schemas.service import ServiceSchema
-from db.models import Service
+
 
 def create_service(service: ServiceSchema):
     try:
-        created_service = service_repository.create_service(service.merchant_name, service.category_id)
+        created_service = service_repository.create_service(service.provider_name, service.category_id)
         return created_service
     except Exception as e:
-        logger.error(f"Error creating service for merchant {service.merchant_name}: {e} here is the mistake")
+        logger.error(f"Error creating service for provider {service.provider_name}: {e} here is the mistake")
         raise
-
 
 
 def get_service_by_id(service_id):
@@ -24,18 +23,6 @@ def get_service_by_id(service_id):
             return None
     except Exception as e:
         logger.error(f"Error retrieving service {service_id}: {e}")
-        raise
-
-
-def get_service_by_merchant_name(merchant_name):
-    try:
-        service = service_repository.get_service_by_merchant_name(merchant_name)
-        if service is not None:
-            return service
-        else:
-            return None
-    except Exception as e:
-        logger.error(f"Error retrieving service for merchant {merchant_name}: {e}")
         raise
 
 
@@ -62,7 +49,7 @@ def deactivate_service(service_id):
         raise
 
 
-def topup_merchant_balance(service_id, amount):
+def topup_provider_balance(service_id, amount):
     try:
         service = service_repository.get_service_by_id(service_id)
         if service is not None and amount > 0:

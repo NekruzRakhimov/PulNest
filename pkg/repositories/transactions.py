@@ -24,3 +24,6 @@ def card_to_card(t: Transactions):
         db.refresh(transaction)
         logger.info(f"After commit: source_id={transaction.source_id}, dest_id={transaction.dest_id}, amount={transaction.amount}")
 
+def create_transaction():
+    pass
+
