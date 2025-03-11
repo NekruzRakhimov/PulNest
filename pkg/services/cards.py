@@ -5,7 +5,6 @@ from schemas.cards import CardCreate, CardReturn, CardUpdate
 from logger.logger import logger
 from decimal import Decimal
 
-
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 import base64

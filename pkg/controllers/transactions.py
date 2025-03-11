@@ -2,12 +2,13 @@ from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 
 from pkg.services import cards as cards_service
-from pkg.services import transactions as transactions_service
+from pkg.services import transactions as tr_service
 from schemas.cards import CardTransferCard
+
+from logger.logger import logger
 
 router = APIRouter()
 
-from logger.logger import logger
 
 @router.put("/card-card/", summary="Transfer money from card to card", tags=["transactions"])
 def expense_card_balance(request: CardTransferCard):
@@ -48,7 +49,7 @@ def expense_card_balance(request: CardTransferCard):
     if expense_sender in [None, -1]:
         logger.error(f"Failed transaction between {request.sender_card_number[:4]}****{request.sender_card_number[-4:]} and {request.receiver_card_number[:4]}****{request.receiver_card_number[-4:]}")
         transaction_status = "failed"
-        transactions_service.card_to_card(user_id, sender_card.id, receiver_card.id, request.amount, transaction_status)
+        tr_service.card_to_card(user_id, sender_card.id, receiver_card.id, request.amount, transaction_status)
         return JSONResponse(
             content={'error': 'Transaction failed'},
             status_code=status.HTTP_400_BAD_REQUEST
@@ -71,7 +72,7 @@ def expense_card_balance(request: CardTransferCard):
 
     # Фиксация успешной транзакции
     transaction_status = "success"
-    transactions_service.card_to_card(user_id, sender_card.id, receiver_card.id, request.amount, transaction_status)
+    tr_service.card_to_card(user_id, sender_card.id, receiver_card.id, request.amount, transaction_status)
 
     return JSONResponse(
         content={'message': 'Transaction successful'},

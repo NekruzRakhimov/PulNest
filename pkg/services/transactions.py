@@ -1,8 +1,7 @@
-from db.models import Transactions
+from db.models import Transaction
 from pkg.repositories import transactions as transactions_repository
 from logger.logger import logger
 
-    
 
 def card_to_card(user_id, expense_sender_id, income_receiver_id, amount, status):
     logger.info(f"expense_sender_id={expense_sender_id}, income_receiver_id={income_receiver_id}")
@@ -11,7 +10,7 @@ def card_to_card(user_id, expense_sender_id, income_receiver_id, amount, status)
         logger.error(f"Invalid transaction: sender={expense_sender_id}, receiver={income_receiver_id}")
         return
 
-    t = Transactions(
+    t = Transaction(
         user_id=user_id,
         source_type="card",
         source_id=expense_sender_id,

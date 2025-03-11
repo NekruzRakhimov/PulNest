@@ -1,13 +1,12 @@
 from sqlalchemy.orm import Session
 from db.postgres import engine
-from db.models import Transactions
+from db.models import Transaction
 from logger.logger import logger
 
 
-
-def card_to_card(t: Transactions):
+def card_to_card(t: Transaction):
     with Session(bind=engine) as db:
-        transaction = Transactions(
+        transaction = Transaction(
         user_id=t.user_id,
         source_type=t.source_type,
         source_id=t.source_id,  
@@ -16,7 +15,6 @@ def card_to_card(t: Transactions):
         dest_id=t.dest_id,  
         status=t.status
         )
-
 
         db.add(transaction)
         db.commit()

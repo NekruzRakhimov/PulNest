@@ -1,11 +1,9 @@
-
 from sqlalchemy.orm import Session
 from db.postgres import engine
 from db.models import Card
 from logger.logger import logger
 import datetime
 
-    
 
 def add_card(user_id, card: Card):
     logger.info(f"Adding new card... user_id={user_id}")
@@ -24,7 +22,6 @@ def add_card(user_id, card: Card):
         return None
     
 
-
 def get_card_by_id(user_id, card_id):
     logger.info(f"Getting card by ID... user_id={user_id}, card_id={card_id}")
     with Session(bind=engine) as db:
@@ -35,8 +32,7 @@ def get_card_by_id(user_id, card_id):
         
         logger.info(f"Card found: id={db_card.id}")
         return db_card
-    
-    
+
 
 def get_all_cards(user_id):
     logger.info(f"Getting all cards... user_id={user_id}")
@@ -45,8 +41,7 @@ def get_all_cards(user_id):
         logger.info(f"Found {len(db_cards)} cards for user_id={user_id}")
         return db_cards
 
- 
-    
+
 def update_card(user_id, card_id, c: Card):
     logger.info(f"Updating card... user_id={user_id}, card_id={card_id}")
     with Session(bind=engine) as db:
@@ -63,8 +58,7 @@ def update_card(user_id, card_id, c: Card):
         db.refresh(db_card)
         logger.info(f"Card updated successfully: id={db_card.id}")
         return db_card.id
-      
-    
+
     
 def delete_card(user_id, card_id):
     logger.info(f"Deleting card... user_id={user_id}, card_id={card_id}")
@@ -78,7 +72,8 @@ def delete_card(user_id, card_id):
         db.commit()
         logger.info(f"Card deleted successfully: id={db_card.id}")
         return db_card.id
-    
+
+
 def expense_card_balance(user_id, card_id, amount):
     with Session(bind=engine) as db:
         db_card = db.query(Card).filter(Card.deleted_at == None, Card.user_id == user_id,
@@ -107,7 +102,6 @@ def income_card_balance(user_id, amount, card_id,):
         return db_card
 
 
-    
 def update_card_balance(user_id, card_id, card_balance):
     with Session(bind=engine) as db:
         db_card = db.query(Card).filter(Card.deleted_at == None, Card.user_id == user_id,
@@ -128,7 +122,6 @@ def get_deleted_cards(user_id):
         return db_cards
 
 
-    
 def get_card_by_card_number(user_id, card_number):
     logger.info(f"Searching card by PAN... user_id={user_id}, card_number={card_number}")
     with Session(bind=engine) as db:

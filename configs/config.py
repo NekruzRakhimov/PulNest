@@ -7,9 +7,10 @@ class AuthSettings(BaseModel):
     algorithm: str
     access_token_expire_minutes: int
 
+
 class EmailCredentials(BaseModel):
-    email : str
-    password : str
+    email: str
+    password: str
 
 
 class Settings(BaseModel):

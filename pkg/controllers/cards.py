@@ -8,9 +8,7 @@ from pkg.services import cards as cards_service
 from schemas.cards import CardCreate, CardUpdate
 
 
-
 router = APIRouter()
-
 
 
 @router.post("/cards", summary="Create new card", tags=["cards"])

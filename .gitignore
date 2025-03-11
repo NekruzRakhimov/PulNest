@@ -8,4 +8,5 @@ __pycache__/
 **/__pycache__/
 logs/
 *.log
+configs/__pycache__/
 

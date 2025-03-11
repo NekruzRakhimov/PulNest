@@ -4,7 +4,7 @@ from starlette.responses import Response, JSONResponse
 
 from logger.logger import logger
 from pkg.controllers.middlewares import get_current_user
-from schemas.wallet import WalletBase, WalletBalanceResponse
+
 from pkg.services import wallet as wallet_service
 from utils.auth import TokenPayload
 

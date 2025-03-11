@@ -93,6 +93,19 @@ class Category(Base):
     deleted_at = Column(DateTime, nullable=True)
 
 
+class AutoPayment(Base):
+    __tablename__ = "auto_payments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    amount = Column(Numeric(12, 2), nullable=False)
+    service_id = Column(Integer, ForeignKey('services.id'), nullable=False, index=True)
+    payment_date = Column(DateTime, default=datetime.datetime.now)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.datetime.now)
+    deleted_at = Column(DateTime, nullable=True)
+
+
 def migrate_tables():
     try:
         Base.metadata.create_all(bind=engine)

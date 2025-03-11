@@ -1,0 +1,15 @@
+2025-03-10 17:05:58,450 - WARNING - pulnest_app - get_user_by_phone - Line 43 - No user found by phone: 987654321
+2025-03-10 17:05:58,455 - WARNING - pulnest_app - get_user_by_email - Line 29 - No user found by email: ganizoda00@gmail.com
+2025-03-10 17:05:59,120 - INFO - pulnest_app - create_user - Line 14 - User created successfully with ID: 1
+2025-03-10 17:06:39,500 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 987654321
+2025-03-10 17:07:59,734 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: ganizoda00@gmail.com
+2025-03-10 17:07:59,737 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: ganizoda00@gmail.com
+2025-03-10 17:07:59,744 - INFO - pulnest_app - save_verification_code - Line 94 - Verification code saved for email: ganizoda00@gmail.com
+2025-03-10 17:08:40,969 - INFO - pulnest_app - get_verification_code - Line 106 - Verification code found for email: ganizoda00@gmail.com
+2025-03-10 17:08:41,003 - INFO - pulnest_app - verify_user - Line 70 - User ganizoda00@gmail.com verified successfully.
+2025-03-10 17:08:41,005 - INFO - pulnest_app - get_user_by_email - Line 27 - User found by email: ganizoda00@gmail.com
+2025-03-10 17:08:41,015 - INFO - pulnest_app - create_wallet - Line 21 - Wallet created for user 1.
+2025-03-10 17:08:41,019 - INFO - pulnest_app - delete_verification_code - Line 119 - Verification code deleted for email: ganizoda00@gmail.com
+2025-03-10 17:08:48,239 - INFO - pulnest_app - get_user_by_phone - Line 41 - User found by phone: 987654321
+2025-03-10 17:14:06,037 - INFO - pulnest_app - create_autopayment - Line 21 - Autopayment created for user 1, service 1, amount 0.00
+2025-03-10 17:14:06,039 - INFO - pulnest_app - create_autopayment - Line 13 - Autopayment created for user_id=1, service_id=1, amount=0.0
