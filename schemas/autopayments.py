@@ -1,41 +1,36 @@
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
+from decimal import Decimal
 
 
 class AutoPaymentCreate(BaseModel):
     user_id: int
-    amount: float
+    amount: Decimal  # Изменили на Decimal
     service_id: int
+    title: str  # Новый атрибут для названия автоплатежа
     payment_date: Optional[datetime] = None  # Дата платежа может быть опциональной
     is_active: Optional[bool] = True  # Статус активности автоплатежа, по умолчанию True
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Используем для Pydantic v2
 
 
 class AutoPaymentOut(BaseModel):
-    id: int
-    user_id: int
-    amount: float
-    service_id: int
-    payment_date: datetime
-    is_active: bool
-    created_at: datetime
-    deleted_at: Optional[datetime]
+    title: str  # Название автоплатежа
+    merchant_name: Optional[str] = None  # Добавляем merchant_name, он может быть пустым
+    amount: Decimal  # Сумма
+    payment_date: datetime  # Дата платежа
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Используем для Pydantic v2
 
 
 class AutoPaymentUpdate(BaseModel):
-    amount: Optional[float]
-    service_id: Optional[int]
-    is_active: Optional[bool]
-    deleted_at: Optional[datetime]
+    amount: Optional[Decimal]  # Сумма
+    service_id: Optional[int]  # Сервис
+    is_active: Optional[bool]  # Статус активности
+    deleted_at: Optional[datetime]  = None  # Дата удаления
 
     class Config:
-        orm_mode = True
-
-
-
+        from_attributes = True  # Используем для Pydantic v2

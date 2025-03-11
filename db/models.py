@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import DeclarativeBase, relationship
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float, Numeric, Boolean
 
 from db.postgres import engine
@@ -85,6 +85,11 @@ class Service(Base):
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
 
+    category = relationship("Category", back_populates="services")
+
+    # Связь с автоплатежами
+    auto_payments = relationship("AutoPayment", back_populates="service")
+
 
 class Category(Base):
     __tablename__ = "categories"
@@ -94,11 +99,14 @@ class Category(Base):
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
 
+    services = relationship("Service", back_populates="category")
+
 
 class AutoPayment(Base):
     __tablename__ = "auto_payments"
 
     id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, nullable=False)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     amount = Column(Numeric(12, 2), nullable=False)
     service_id = Column(Integer, ForeignKey('services.id'), nullable=False, index=True)
@@ -106,6 +114,8 @@ class AutoPayment(Base):
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
+
+    service = relationship("Service", back_populates="auto_payments")
 
 
 def migrate_tables():

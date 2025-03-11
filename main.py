@@ -12,26 +12,21 @@ from pkg.controllers.autopayments import router as autopayments_router
 from pkg.controllers.history import router as history_router
 from pkg.controllers.service import router as service_router
 
+# Создание FastAPI приложения
+app = FastAPI()
 
-app = FastAPI() 
+# Создание таблиц
+migrate_tables()
 
+# Подключаем маршруты
+app.include_router(default_router)
+app.include_router(auth_router)
+app.include_router(wallet_router)
+app.include_router(cards_router)
+app.include_router(transactions_router)
+app.include_router(autopayments_router)
+app.include_router(history_router)
+app.include_router(service_router)
 
 if __name__ == "__main__":
-    # Создание таблиц
-    migrate_tables()
-
-    # Создание роутера
-    app = FastAPI()
-    # Подключаем маршруты
-    app.include_router(default_router)
-    app.include_router(auth_router)
-    app.include_router(wallet_router)
-    app.include_router(cards_router)
-    app.include_router(transactions_router)
-    app.include_router(autopayments_router)
-    app.include_router(history_router)
-    app.include_router(service_router)
-
-
-    uvicorn.run(app, port=settings.port, host=settings.host)
-
+    uvicorn.run(app, host=settings.host, port=settings.port)
