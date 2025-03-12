@@ -62,7 +62,7 @@ def get_services_by_category_id(category_id):
             raise
 
 
-def update_service(service_id, provider_name = None, category_id = None, is_active = None):
+def update_service(service_id, provider_name = None, category_id = None, is_active = None, ):
     with Session(bind=engine) as db:
         try:
             service = db.query(Service).filter(Service.id == service_id, Service.is_active == True, Service.deleted_at == None).first()
@@ -104,4 +104,26 @@ def soft_delete_service(service_id):
         except Exception as e:
             db.rollback()
             logger.error(f"Error soft deleting service {service_id}: {e} in DB")
+            raise
+
+
+def update_service_balance(service_id, amount):
+    with Session(bind=engine) as db:
+        try:
+            service = db.query(Service).filter(Service.id == service_id).first()
+            if service:
+                if amount > 0:
+                    service.balance += amount
+                    db.commit()
+                    logger.info(f"Updated service {service_id} balance to {service.balance}.")
+                    return service.balance
+                else:
+                    logger.error("Amount cannot be negative.")
+                    return -1    
+            else:
+                logger.error(f"Service with ID {service_id} not found.")
+                return -1
+        except Exception as e:
+            db.rollback()
+            logger.error(f"Error updating service balance: {e}")
             raise

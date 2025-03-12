@@ -60,7 +60,7 @@ class Card(Base):
     deleted_at = Column(DateTime, nullable=True)
 
 
-class Transactions(Base):
+class Transaction(Base):
     __tablename__ = "transactions"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -82,7 +82,7 @@ class Service(Base):
     __tablename__ = "services"
     id = Column(Integer, primary_key=True)
     provider_name = Column(String, unique=True, nullable=False)
-    balance = Column(Float, default=0)
+    balance = Column(Numeric(precision=12, scale=2), default=0)
     category_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.now)

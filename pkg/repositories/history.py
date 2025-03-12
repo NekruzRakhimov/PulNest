@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from db.postgres import engine
-from db.models import Transactions
+from db.models import Transaction
 from logger.logger import logger
 from datetime import timedelta, datetime
 

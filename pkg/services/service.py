@@ -86,3 +86,23 @@ def soft_delete_service(service_id):
     except Exception as e:
         logger.error(f"Error soft deleting service {service_id}: {e}")
         raise
+
+
+def topup_balance(service_id, amount):
+        try:
+            service = get_service_by_id(service_id=service_id)
+
+            if service is None:
+                logger.warning(f"No active service found with ID {service_id}.")
+                return None
+
+            new_balance = service.balance + amount 
+            service_id = service_repository.update_service(service_id=service_id, new_balance=new_balance)
+            logger.info(f"Balance topped up for service {service_id}. New balance: {service.balance}.")
+
+            return service
+        
+        except Exception as e:
+            logger.error(f"Error topping up balance for service {service_id}: {e}")
+            raise Exception(f"An error occurred while updating the balance: {e}")
+    
