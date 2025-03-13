@@ -1,7 +1,7 @@
 import datetime
 
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float, Numeric, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float, Numeric, Boolean, Date
 
 from db.postgres import engine
 
@@ -15,6 +15,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     surname = Column(String, nullable=False)
+    birth_date = Column(Date, nullable=False)
     email = Column(String, unique=True, nullable=False)
     phone = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
@@ -60,10 +61,11 @@ class Card(Base):
     deleted_at = Column(DateTime, nullable=True)
 
 
-class Transactions(Base):
+class Transaction(Base):
     __tablename__ = "transactions"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    tran_type = Column(String, nullable=False) # income, expense
     source_type = Column(String, nullable=False)  
     source_id = Column(Integer, nullable=False)
     source_number = Column(String, nullable=False) #добавила
@@ -71,6 +73,8 @@ class Transactions(Base):
     dest_type = Column(String, nullable=False)  
     dest_id = Column(Integer, nullable=False)
     dest_number = Column(String, nullable=False) #добавила
+    comment = Column(String) 
+    correlation_id = Column(Integer)
     status = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.now)
     
@@ -78,8 +82,8 @@ class Transactions(Base):
 class Service(Base):
     __tablename__ = "services"
     id = Column(Integer, primary_key=True)
-    merchant_name = Column(String, unique=True, nullable=False)
-    balance = Column(Float, default=0)
+    provider_name = Column(String, unique=True, nullable=False)
+    balance = Column(Numeric(precision=12, scale=2), default=0)
     category_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.now)
@@ -89,8 +93,19 @@ class Service(Base):
 class Category(Base):
     __tablename__ = "categories"
     id = Column(Integer, primary_key=True)
-    category = Column(String, nullable=False)
-    subcategory = Column(String, nullable=False)
+    name = Column(String, nullable=False, unique=True)
+    created_at = Column(DateTime, default=datetime.datetime.now)
+    deleted_at = Column(DateTime, nullable=True)
+
+
+class Admin(Base):
+    __tablename__ = "admins"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    surname = Column(String, nullable=False)
+    email = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)
+    role = Column(String, default="admin")
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
 

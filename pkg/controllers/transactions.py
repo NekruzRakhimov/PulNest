@@ -6,6 +6,9 @@ from pkg.services import cards as cards_service
 from pkg.services import transactions as transactions_service
 from schemas.cards import CardTransferCard
 from utils.auth import TokenPayload
+from schemas.transaction import WalletPaymentSchema, CardPaymentSchema
+
+
 
 router = APIRouter()
 
@@ -79,3 +82,78 @@ def expense_card_balance(request: CardTransferCard, payload: TokenPayload = Depe
         content={'message': 'Transaction successful'},
         status_code=status.HTTP_200_OK
     )
+
+
+@router.post("/payments/wallet", summary="Make payment via wallet balance", tags=["transactions"])
+def wallet_payment(payment_data: WalletPaymentSchema, payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id
+    try:
+        result = transactions_service.pay_service_by_wallet(
+            user_id=user_id,
+            service_id=payment_data.service_id,
+            amount=payment_data.amount,
+            account_number=payment_data.account_number,
+            comment=payment_data.comment
+        )
+
+        if result > 0:
+            return JSONResponse(content={"message" : "Payment made successfully."}, 
+                                status_code=status.HTTP_200_OK)
+        
+        elif result == -1:
+            return JSONResponse(content={"message" : "Transaction declined due to insufficient funds."}, 
+                                status_code=status.HTTP_402_PAYMENT_REQUIRED)
+        
+        elif result == -2:
+            return JSONResponse(content={"message" : "Service does not exist."}, 
+                                status_code=status.HTTP_400_BAD_REQUEST)
+        
+        else:
+            return JSONResponse(content={"message" : "An error occurred while processing the wallet payment."}, 
+                                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    except Exception as e:
+        raise JSONResponse(content={"message" : "An error occurred while processing the wallet payment."}, 
+                           status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    
+@router.post("/payments/card", summary="Make payment via card balance", tags=["transactions"])
+def wallet_payment(payment_data: CardPaymentSchema, payload: TokenPayload = Depends(get_current_user)):
+    user_id = payload.id
+    try:
+        card = cards_service.get_card_by_card_number(user_id, payment_data.card_number)
+        if card is not None:
+            result = transactions_service.pay_service_by_card(
+                user_id=user_id,
+                service_id=payment_data.service_id,
+                card_number=payment_data.card_number,
+                amount=payment_data.amount,
+                account_number=payment_data.account_number,
+                comment=payment_data.comment
+            )
+
+            if result > 0:
+                return JSONResponse(content={"message" : "Payment made successfully."}, 
+                                    status_code=status.HTTP_200_OK)
+            
+            elif result == -1:
+                return JSONResponse(content={"message" : "Transaction declined due to insufficient funds."}, 
+                                    status_code=status.HTTP_402_PAYMENT_REQUIRED)
+            
+            elif result == -2:
+                return JSONResponse(content={"message" : "Service does not exist."}, 
+                                    status_code=status.HTTP_400_BAD_REQUEST)
+            
+            else:
+                return JSONResponse(content={"message" : "An error occurred while processing the card payment."}, 
+                                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        else:
+            logger.error(f"Card {payment_data.card_number[:4]}****{payment_data.card_number[-4:]} not found")
+            return JSONResponse(
+                    content={'error': 'Card not found'},
+                    status_code=status.HTTP_404_NOT_FOUND
+        )
+
+    except Exception as e:
+        raise JSONResponse(content={"message" : "An error occurred while processing the card payment."}, 
+                           status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)

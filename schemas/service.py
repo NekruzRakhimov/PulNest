@@ -4,13 +4,13 @@ from typing  import Optional
 
 
 class ServiceSchema(BaseModel):
-    merchant_name: str  
+    provider_name: str  
     category_id: int 
 
 
 
 class ServiceResponse(BaseModel):
     id: int
-    merchant_name: str
-    category_id: int
+    provider_name: str
+    category_name: str
 

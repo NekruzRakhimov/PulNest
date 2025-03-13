@@ -1,11 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, constr, EmailStr
+from datetime import date
 
 
 class UserSchema(BaseModel):
-    name: str
+    name : str
     surname : str
-    email : str
-    phone : int
+    birth_date : str
+    email : EmailStr
+    phone : constr(min_length=12, max_length=12)
     password : str
 
 
@@ -16,5 +18,5 @@ class VerificationRequest(BaseModel):
 
 
 class UserSignInSchema(BaseModel):
-    phone: str
+    phone: constr(min_length=12, max_length=12)
     password: str

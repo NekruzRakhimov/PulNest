@@ -7,11 +7,11 @@ from db.postgres import engine
 from logger.logger import logger 
 
 
-def create_service(merchant_name, category_id):
+def create_service(provider_name, category_id):
     with Session(bind=engine) as db:
         try:
             service = Service(
-                merchant_name=merchant_name,
+                provider_name=provider_name,
                 balance=0,
                 category_id=category_id,
                 is_active=True,
@@ -19,11 +19,11 @@ def create_service(merchant_name, category_id):
             )
             db.add(service)
             db.commit()
-            logger.info(f"Service created for merchant {merchant_name} in DB.")
+            logger.info(f"Service created for provider {provider_name} in DB.")
             return service
         except Exception as e:
             db.rollback()
-            logger.error(f"Error creating service for merchant {merchant_name}: {e} in DB")
+            logger.error(f"Error creating service for provider {provider_name}: {e} in DB")
             raise
 
 
@@ -39,25 +39,6 @@ def get_service_by_id(service_id):
                 return None
         except Exception as e:
             logger.error(f"Error retrieving service {service_id}: {e} from DB")
-            raise
-
-
-def get_service_by_merchant_name(merchant_name):
-    with Session(bind=engine) as db:
-        try:
-            merchant_name = merchant_name.strip() 
-            logger.info(f"Querying for merchant: {merchant_name}")
-            service = db.query(Service).filter(func.lower(Service.merchant_name) == func.lower(merchant_name), 
-                                               Service.is_active == True, Service.deleted_at == None).first()
-            logger.info(f"Query result: {service}")
-            if service:
-                logger.info(f"Service found for merchant {merchant_name} in DB.")
-                return service
-            else:
-                logger.warning(f"No service found for merchant {merchant_name} in DB.")
-                return None
-        except Exception as e:
-            logger.error(f"Error retrieving service for merchant {merchant_name}: {e} from DB")
             raise
 
 
@@ -81,7 +62,7 @@ def get_services_by_category_id(category_id):
             raise
 
 
-def update_service(service_id, merchant_name = None, category_id = None, is_active = None):
+def update_service(service_id, provider_name = None, category_id = None, is_active = None, ):
     with Session(bind=engine) as db:
         try:
             service = db.query(Service).filter(Service.id == service_id, Service.is_active == True, Service.deleted_at == None).first()
@@ -89,8 +70,8 @@ def update_service(service_id, merchant_name = None, category_id = None, is_acti
 
                 logger.info(f"Service instance in session: {service in db}")
 
-                if merchant_name is not None:
-                    service.merchant_name = merchant_name
+                if provider_name is not None:
+                    service.provider_name = provider_name
                 if category_id is not None:
                     service.category_id = category_id
                 if is_active is not None:
@@ -123,4 +104,26 @@ def soft_delete_service(service_id):
         except Exception as e:
             db.rollback()
             logger.error(f"Error soft deleting service {service_id}: {e} in DB")
+            raise
+
+
+def update_service_balance(service_id, amount):
+    with Session(bind=engine) as db:
+        try:
+            service = db.query(Service).filter(Service.id == service_id).first()
+            if service:
+                if amount > 0:
+                    service.balance += amount
+                    db.commit()
+                    logger.info(f"Updated service {service_id} balance to {service.balance}.")
+                    return service.balance
+                else:
+                    logger.error("Amount cannot be negative.")
+                    return -1    
+            else:
+                logger.error(f"Service with ID {service_id} not found.")
+                return -1
+        except Exception as e:
+            db.rollback()
+            logger.error(f"Error updating service balance: {e}")
             raise

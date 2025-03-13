@@ -10,6 +10,7 @@ from pkg.controllers.cards import router as cards_router
 from pkg.controllers.transactions import router as transactions_router
 from pkg.controllers.history import router as history_router
 from pkg.controllers.service import router as service_router
+from pkg.controllers.category import router as category_router
 
 
 
@@ -30,6 +31,7 @@ if __name__ == "__main__":
     app.include_router(transactions_router)
     app.include_router(history_router)
     app.include_router(service_router)
+    app.include_router(category_router)
 
     
 

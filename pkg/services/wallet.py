@@ -91,10 +91,10 @@ def wallet_topup(user_id, amount):
                 return True
             else:
                 logger.warning(f"Amount cannot be negative.")
-                return None 
+                return -1 
         else:
             logger.warning(f"No wallet found for user {user_id}.")
-            return None
+            return -1
     except Exception as e:
         logger.error(f"Error adding funds to wallet for user {user_id}: {e}")
         raise
@@ -113,13 +113,13 @@ def wallet_withdrawal(user_id, amount):
                     return True
                 else:
                     logger.warning(f"Insufficient balance in wallet for user {user_id}.")
-                    raise ValueError("Insufficient balance")
+                    return -1
             else:
                 logger.warning(f"Amount cannot be negative.")
-                return None 
+                return -1
         else:
             logger.warning(f"No wallet found for user {user_id}.")
-            return None
+            return -1
     except Exception as e:
         logger.error(f"Error deducting funds from wallet for user {user_id}: {e}")
         raise
