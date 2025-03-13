@@ -1,21 +1,29 @@
 import json
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from fastapi.responses import JSONResponse
 from starlette.responses import Response
 
 from logger.logger import logger
 from pkg.services import category as category_service
 from schemas.category import CategoryResponse, CategorySchema
+from pkg.controllers.middlewares import get_current_user
+from utils.auth import TokenPayload
 
 router = APIRouter()
 
 
 # Create Category
 @router.post("/categories", summary="Create new category",  tags=["categories"])
-def create_category(category_data: CategorySchema):
+def create_category(category_data: CategorySchema, payload: TokenPayload = Depends(get_current_user)):
+    
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can create categories"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+    
     try:
         category = category_service.create_category(category_data)
         return Response(json.dumps({'message': 'Category created successfully'}), status.HTTP_201_CREATED)
+    
     except Exception as e:
         logger.error(f"Error creating category: {e}")
         raise HTTPException(
@@ -88,7 +96,12 @@ def get_all_categories():
 
 # Update Category
 @router.put("/categories/{category_id}", summary="Update category name",  tags=["categories"])
-def update_category(category_id: int, category_data: CategorySchema):
+def update_category(category_id, category_data: CategorySchema, payload: TokenPayload = Depends(get_current_user)):
+    
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can create categories"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+    
     try:
         category = category_service.update_category(category_id, category_data)
         if category is not None:
@@ -111,7 +124,12 @@ def update_category(category_id: int, category_data: CategorySchema):
 
 # Soft Delete Category
 @router.delete("/categories/{category_id}", summary="Delete category",  tags=["categories"])
-def soft_delete_category(category_id: int):
+def soft_delete_category(category_id, payload: TokenPayload = Depends(get_current_user)):
+
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can create categories"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+
     try:
         category = category_service.soft_delete_category(category_id)
         if category:

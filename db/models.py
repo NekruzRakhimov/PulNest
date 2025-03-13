@@ -1,7 +1,7 @@
 import datetime
 
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float, Numeric, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float, Numeric, Boolean, Date
 
 from db.postgres import engine
 
@@ -15,6 +15,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     surname = Column(String, nullable=False)
+    birth_date = Column(Date, nullable=False)
     email = Column(String, unique=True, nullable=False)
     phone = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
@@ -93,6 +94,18 @@ class Category(Base):
     __tablename__ = "categories"
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, unique=True)
+    created_at = Column(DateTime, default=datetime.datetime.now)
+    deleted_at = Column(DateTime, nullable=True)
+
+
+class Admin(Base):
+    __tablename__ = "admins"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    surname = Column(String, nullable=False)
+    email = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)
+    role = Column(String, default="admin")
     created_at = Column(DateTime, default=datetime.datetime.now)
     deleted_at = Column(DateTime, nullable=True)
 

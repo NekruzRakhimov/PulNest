@@ -22,7 +22,7 @@ def create_user(user: User):
 def get_user_by_email(email):
     with Session(bind=engine) as db:
         try:
-            db_user = db.query(User).filter(User.email == email).first()
+            db_user = db.query(User).filter(User.email == email, User.deleted_at == None).first()
             if db_user:
                 logger.info(f"User found by email: {email}")
             else:
@@ -36,7 +36,7 @@ def get_user_by_email(email):
 def get_user_by_phone(phone):
     with Session(bind=engine) as db:
         try:
-            db_user = db.query(User).filter(User.phone == str(phone)).first()
+            db_user = db.query(User).filter(User.phone == str(phone), User.deleted_at == None).first()
             if db_user:
                 logger.info(f"User found by phone: {phone}")
             else:
@@ -50,7 +50,7 @@ def get_user_by_phone(phone):
 def get_user_by_phone_and_password(phone, password):
     with Session(bind=engine) as db:
         try:
-            db_user = db.query(User).filter(User.phone == phone, User.password == password).first()
+            db_user = db.query(User).filter(User.phone == phone, User.password == password, User.deleted_at == None).first()
             if db_user:
                 logger.info(f"User found by phone and password: {phone}")
             else:
@@ -63,7 +63,7 @@ def get_user_by_phone_and_password(phone, password):
 def verify_user(email):
     with Session(bind=engine) as db:
         try:
-            user = db.query(User).filter(User.email == email).first()
+            user = db.query(User).filter(User.email == email, User.deleted_at == None).first()
             if user:
                 user.is_verified = True
                 db.commit()
@@ -82,7 +82,7 @@ def verify_user(email):
 def save_verification_code(email: str, code: str):
     with Session(bind=engine) as db:
         try:
-            expires_at = datetime.now() + timedelta(minutes=20)
+            expires_at = datetime.now() + timedelta(minutes=5)
             user = get_user_by_email(email=email)
             if not user:
                 logger.error(f"No user found for email: {email}")
@@ -98,6 +98,7 @@ def save_verification_code(email: str, code: str):
             logger.error(f"Error saving verification code for email {email}: {e}")
             raise
 
+
 def get_verification_code(email: str):
     with Session(bind=engine) as db:
         try:
@@ -110,6 +111,7 @@ def get_verification_code(email: str):
         except Exception as e:
             logger.error(f"Error fetching verification code for email {email}: {e}")
             raise
+
 
 def delete_verification_code(email: str):
     with Session(bind=engine) as db:

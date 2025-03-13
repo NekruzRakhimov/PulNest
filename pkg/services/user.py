@@ -39,6 +39,7 @@ def create_user(user: UserSchema):
     u = User()
     u.name = user.name
     u.surname = user.surname
+    u.birth_date = user.birth_date
     u.email = user.email
     u.phone = user.phone
     u.password = hash_password(user.password)

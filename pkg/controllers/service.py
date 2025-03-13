@@ -1,5 +1,5 @@
 import json
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from fastapi.responses import JSONResponse
 from starlette.responses import Response
 
@@ -7,7 +7,8 @@ from logger.logger import logger
 from pkg.services import service as service_service
 from pkg.services import category as service_category
 from schemas.service import ServiceResponse,  ServiceSchema
-
+from pkg.controllers.middlewares import get_current_user
+from utils.auth import TokenPayload
 
 
 router = APIRouter()
@@ -15,7 +16,12 @@ router = APIRouter()
 
 # Create Service
 @router.post("/services", summary="Create service", tags=["services"])
-def create_service(service_data: ServiceSchema):
+def create_service(service_data: ServiceSchema, payload: TokenPayload = Depends(get_current_user)):
+
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can create services"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+    
     try:
         service = service_service.create_service(service_data)
    
@@ -127,7 +133,12 @@ def get_services_by_category_id(category_id):
 
 # Deactivate Service
 @router.patch("/services/{service_id}", summary="Deactivate service by ID", tags=["services"])
-def deactivate_service(service_id):
+def deactivate_service(service_id, payload: TokenPayload = Depends(get_current_user)):
+    
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can update services"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+    
     try:
         service = service_service.deactivate_service(service_id)
         if service is not None:
@@ -150,7 +161,12 @@ def deactivate_service(service_id):
 
 # Soft Delete Service
 @router.delete("/services/{service_id}", summary="Delete service by ID", tags=["services"])
-def soft_delete_service(service_id):
+def soft_delete_service(service_id, payload: TokenPayload = Depends(get_current_user)):
+
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can update services"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+
     try:
         service = service_service.soft_delete_service(service_id)
         if service:
