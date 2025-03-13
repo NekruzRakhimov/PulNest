@@ -35,7 +35,8 @@ def expense_card_balance(request: CardTransferCard, payload: TokenPayload = Depe
     # Списание средств
     expense_sender = cards_service.expense_card_balance(user_id, request.amount, sender_card.balance, sender_card.id)
     if expense_sender is None:
-        logger.error(f"Error debiting card {request.sender_card_number[:4]}****{request.sender_card_number[-4:]} for amount {request.amount}")
+        logger.error(f"Error debiting card {request.sender_card_number[:4]}****{request.sender_card_number[-4:]} "
+                     f"for amount {request.amount}")
         return JSONResponse(
             content={'error': 'Something went wrong while debiting the card'},
             status_code=status.HTTP_400_BAD_REQUEST
@@ -49,7 +50,8 @@ def expense_card_balance(request: CardTransferCard, payload: TokenPayload = Depe
 
     # Если списание неудачное, фиксируем неудачную транзакцию
     if expense_sender in [None, -1]:
-        logger.error(f"Failed transaction between {request.sender_card_number[:4]}****{request.sender_card_number[-4:]} and {request.receiver_card_number[:4]}****{request.receiver_card_number[-4:]}")
+        logger.error(f"Failed transaction between {request.sender_card_number[:4]}****{request.sender_card_number[-4:]}"
+                     f" and {request.receiver_card_number[:4]}****{request.receiver_card_number[-4:]}")
         transaction_status = "failed"
         transactions_service.card_to_card(user_id, sender_card.id, receiver_card.id, request.amount, transaction_status)
         return JSONResponse(
@@ -60,13 +62,15 @@ def expense_card_balance(request: CardTransferCard, payload: TokenPayload = Depe
     # Пополнение средств
     income_receiver = cards_service.income_card_balance(user_id, request.amount, receiver_card.balance, receiver_card.id)
     if income_receiver is None:
-        logger.error(f"Error crediting card {request.receiver_card_number[:4]}****{request.receiver_card_number[-4:]} for amount {request.amount}")
+        logger.error(f"Error crediting card {request.receiver_card_number[:4]}****{request.receiver_card_number[-4:]} "
+                     f"for amount {request.amount}")
         return JSONResponse(
             content={'error': 'Something went wrong while crediting the card'},
             status_code=status.HTTP_400_BAD_REQUEST
         )
     elif income_receiver == -2:
-        logger.error(f"Amount exceeds the maximum allowed value for card {request.receiver_card_number[:4]}****{request.receiver_card_number[-4:]}")
+        logger.error(f"Amount exceeds the maximum allowed value for card "
+                     f"{request.receiver_card_number[:4]}****{request.receiver_card_number[-4:]}")
         return JSONResponse(
             content={'error': 'Amount exceeds the maximum allowed value: 9 999 999 999.99'},
             status_code=status.HTTP_400_BAD_REQUEST
@@ -77,7 +81,6 @@ def expense_card_balance(request: CardTransferCard, payload: TokenPayload = Depe
 
     transactions_service.card_to_card(user_id, sender_card.id, sender_card.card_number,
                                       receiver_card.id, receiver_card.card_number, request.amount, transaction_status)
-
 
     return JSONResponse(
         content={'message': 'Transaction successful'},
