@@ -1,5 +1,6 @@
 from datetime import date
 from decimal import Decimal
+from typing import Optional, Union
 
 from fastapi import APIRouter, Depends, status, Query
 from fastapi.responses import JSONResponse
@@ -13,14 +14,14 @@ router = APIRouter()
 
 @router.get("/history/", summary="Get transactions with optional filters", tags=["history"])
 def get_transactions(
-    min_amount: Decimal | None = Query(None, description="Minimum transaction amount"),  
-    max_amount: Decimal | None = Query(None, description="Maximum transaction amount"), 
-    start_date: date | None = Query(None, description="Start date in YYYY-MM-DD format"),
-    end_date: date | None = Query(None, description="End date in YYYY-MM-DD format"),
-    state: str | None = Query(None, description="Status of transaction"),
-    tran_type: str | None = Query(None, description="Type of transaction"),
-    source_type: str | None = Query(None, description="Source type of transaction"),
-    dest_type: str | None = Query(None, description="Source type of transaction"),
+    min_amount: Optional[Decimal] = Query(None, description="Minimum transaction amount"),  
+    max_amount: Optional[Decimal] = Query(None, description="Maximum transaction amount"), 
+    start_date: Optional[Decimal] = Query(None, description="Start date in YYYY-MM-DD format"),
+    end_date: Optional[Decimal] = Query(None, description="End date in YYYY-MM-DD format"),
+    state: Optional[Decimal] = Query(None, description="Status of transaction"),
+    tran_type: Optional[Decimal] = Query(None, description="Type of transaction"),
+    source_type: Optional[Decimal] = Query(None, description="Source type of transaction"),
+    dest_type: Optional[Decimal] = Query(None, description="Source type of transaction"),
     payload: TokenPayload = Depends(get_current_user)
 ):
     user_id = payload.id
