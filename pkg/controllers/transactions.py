@@ -347,7 +347,7 @@ def wallet_payment(payment_data: WalletPaymentSchema, payload: TokenPayload = De
 def wallet_payment(payment_data: CardPaymentSchema, payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id
     try:
-        card = cards_service.get_card_by_card_number(user_id, payment_data.card_number)
+        card = cards_service.get_card_by_card_number(payment_data.card_number)
         if card is not None:
             result = transactions_service.pay_service_by_card(
                 user_id=user_id,

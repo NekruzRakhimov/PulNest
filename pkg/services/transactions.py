@@ -222,7 +222,7 @@ def pay_service_by_wallet(user_id, service_id, amount, account_number, comment =
 def pay_service_by_card(user_id, service_id, amount, card_number, account_number, comment = None):
     try:
         service = service_repository.get_service_by_id(service_id)
-        user_card = cards_services.get_card_by_card_number(user_id, card_number)
+        user_card = cards_services.get_card_by_card_number(card_number)
         user_balance = user_card.balance
         if service is not None:
             if user_balance < Decimal(amount):

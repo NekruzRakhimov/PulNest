@@ -36,9 +36,9 @@ def get_all_services():
         raise
 
 
-def deactivate_service(service_id):
+def deactivate_service(service_id, is_active):
     try:
-        service = service_repository.update_service(service_id, is_active=False)
+        service = service_repository.update_service(service_id, is_active = is_active)
         if service is not None:
             logger.info(f"Service {service_id} deactivated.")
             return service

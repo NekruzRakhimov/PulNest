@@ -11,7 +11,7 @@ from utils.auth import TokenPayload
 router = APIRouter()
 
 
-@router.get("/wallet", summary="Get user's wallet info",  tags=["walltes"])
+@router.get("/wallet", summary="Get user's wallet info",  tags=["wallets"])
 def get_wallet(payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id
     logger.info(f"Get wallet for user {user_id}.")
@@ -40,7 +40,7 @@ def get_wallet(payload: TokenPayload = Depends(get_current_user)):
         )
 
 
-@router.get("/wallet-balance", summary="Get user's wallet balance",  tags=["walltes"])
+@router.get("/wallet-balance", summary="Get user's wallet balance",  tags=["wallets"])
 def get_wallet_balance(payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id
     logger.info(f"Get wallet balance for user {user_id}.")

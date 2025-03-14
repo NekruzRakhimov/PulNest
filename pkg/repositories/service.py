@@ -68,7 +68,7 @@ def get_services_by_category_id(category_id):
 def update_service(service_id, provider_name = None, category_id = None, is_active = None, ):
     with Session(bind=engine) as db:
         try:
-            service = db.query(Service).filter(Service.id == service_id, Service.is_active == True, Service.deleted_at == None).first()
+            service = db.query(Service).filter(Service.id == service_id, Service.deleted_at == None).first()
             if service is not None:
 
                 logger.info(f"Service instance in session: {service in db}")

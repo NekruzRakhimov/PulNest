@@ -137,17 +137,17 @@ def get_services_by_category_id(category_id):
 
 # Deactivate Service
 @router.patch("/services/{service_id}", summary="Deactivate service by ID", tags=["services"])
-def deactivate_service(service_id, payload: TokenPayload = Depends(get_current_user)):
+def deactivate_service(service_id, is_active: bool, payload: TokenPayload = Depends(get_current_user)):
     
     if payload.role != "admin":
         return Response(json.dumps({"error": "only admin can update services"}),
                         status_code=status.HTTP_403_FORBIDDEN)
     
     try:
-        service = service_service.deactivate_service(service_id)
+        service = service_service.deactivate_service(service_id, is_active = is_active)
         if service is not None:
             return JSONResponse(
-                content={"message" : f"Service {service_id} is deactivated"},
+                content={"message" : f"Service {service_id} is updated"},
                 status_code=status.HTTP_200_OK
             )
         else:
