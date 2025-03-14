@@ -65,10 +65,10 @@ class Transaction(Base):
     __tablename__ = "transactions"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    tran_type = Column(String, nullable=False) # income, expense
+    tran_type = Column(String, nullable=False) 
     source_type = Column(String, nullable=False)  
     source_id = Column(Integer, nullable=False)
-    source_number = Column(String, nullable=False) #добавила
+    source_number = Column(String, nullable=False)
     amount = Column(Float, nullable=False)
     dest_type = Column(String, nullable=False)  
     dest_id = Column(Integer, nullable=False)

@@ -19,8 +19,11 @@ def create_service(provider_name, category_id):
             )
             db.add(service)
             db.commit()
+            
             logger.info(f"Service created for provider {provider_name} in DB.")
+            
             return service
+          
         except Exception as e:
             db.rollback()
             logger.error(f"Error creating service for provider {provider_name}: {e} in DB")
@@ -70,10 +73,13 @@ def update_service(service_id, provider_name = None, category_id = None, is_acti
 
                 logger.info(f"Service instance in session: {service in db}")
 
+
                 if provider_name is not None:
                     service.provider_name = provider_name
+                    
                 if category_id is not None:
                     service.category_id = category_id
+                    
                 if is_active is not None:
                     service.is_active = is_active
                 

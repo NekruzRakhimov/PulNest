@@ -85,6 +85,7 @@ def soft_delete_service(service_id):
             return None
     except Exception as e:
         logger.error(f"Error soft deleting service {service_id}: {e}")
+
         raise
 
 
@@ -106,3 +107,4 @@ def topup_balance(service_id, amount):
             logger.error(f"Error topping up balance for service {service_id}: {e}")
             raise Exception(f"An error occurred while updating the balance: {e}")
     
+

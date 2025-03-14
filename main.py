@@ -14,6 +14,10 @@ from pkg.controllers.category import router as category_router
 
 
 
+from pkg.controllers.service import router as service_router
+
+
+
 app = FastAPI() 
 
 
@@ -32,6 +36,10 @@ if __name__ == "__main__":
     app.include_router(history_router)
     app.include_router(service_router)
     app.include_router(category_router)
+
+
+    app.include_router(service_router)
+
 
     
 

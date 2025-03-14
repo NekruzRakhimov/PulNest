@@ -41,6 +41,7 @@ def get_service_by_id(service_id):
     try:
         service = service_service.get_service_by_id(service_id)
         if service is not None:
+          
             category_name = service_category.get_category_by_id(service.category_id).name
             service_response = ServiceResponse(
                 id = service.id,
@@ -70,8 +71,11 @@ def get_all_services():
     try:
         services = service_service.get_all_services()
         if services is not None:
+            
             services_list = []
+            
             for service in services:
+            
                 category_name = service_category.get_category_by_id(service.category_id).name
                 service_response = ServiceResponse(
                     id = service.id,

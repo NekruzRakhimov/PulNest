@@ -14,3 +14,4 @@ class ServiceResponse(BaseModel):
     provider_name: str
     category_name: str
 
+

@@ -2,12 +2,11 @@ from fastapi import APIRouter, status, Depends
 from fastapi.responses import JSONResponse
 
 from logger.logger import logger
+
 from pkg.controllers.middlewares import get_current_user
 from pkg.services import cards as cards_service
 from schemas.cards import CardCreate, CardUpdate
 from utils.auth import TokenPayload
-
-
 
 router = APIRouter()
 
@@ -46,11 +45,12 @@ def get_all_cards(payload: TokenPayload = Depends(get_current_user)):
 
 
 
-@router.put("/cards/{card_id}/update", summary="Update card by ID", tags=["cards"])
+@router.put("/cards/{card_id}/", summary="Update card by ID", tags=["cards"])
 def update_card(card_id: int, card: CardUpdate, payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id 
 
     got_by_id = cards_service.get_card_by_id(user_id, card_id)
+    logger.info(f"Looking for card to update: user_id={user_id}, card_id={card_id}, result={got_by_id}")
     if got_by_id is None:
          return JSONResponse(
             content={'error': 'Card not found'},
@@ -58,6 +58,13 @@ def update_card(card_id: int, card: CardUpdate, payload: TokenPayload = Depends(
     )
 
     updated_card = cards_service.update_card(user_id, card_id, card)
+
+    if updated_card == -1:
+          return JSONResponse(
+            content={'error': 'Invalid PAN'},
+            status_code=status.HTTP_400_BAD_REQUEST
+        )
+    
     if updated_card is None:
         return JSONResponse(
             content={'error': 'Something went wrong while updating the card'},
@@ -71,7 +78,7 @@ def update_card(card_id: int, card: CardUpdate, payload: TokenPayload = Depends(
 
 
 
-@router.delete("/cards/{card_id}/delete", summary="Delete task by ID", tags=["cards"])
+@router.delete("/cards/{card_id}/", summary="Delete task by ID", tags=["cards"])
 def delete_task(card_id: int, payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id 
 
@@ -81,8 +88,6 @@ def delete_task(card_id: int, payload: TokenPayload = Depends(get_current_user))
             content={'error': 'Card not found'},
             status_code=status.HTTP_404_NOT_FOUND
         )
-
-
 
     deleted_task =cards_service.delete_card(user_id, card_id)
     if deleted_task is None:
@@ -114,10 +119,9 @@ def get_deleted_cards(payload: TokenPayload = Depends(get_current_user)):
 
 
 @router.get("/cards/{card_number}/number", summary="Get card by PAN", tags=["cards"])
-def get_card_by_number(card_number: str, payload: TokenPayload = Depends(get_current_user)):
+def get_card_by_number(card_number: str):
     logger.info(card_number)
-    user_id = payload.id 
-    card = cards_service.get_card_by_card_number(user_id, card_number)
+    card = cards_service.get_card_by_card_number(card_number)
     if card is None:
         return JSONResponse(
             content={'error': 'Card not found'},

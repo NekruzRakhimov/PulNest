@@ -10,6 +10,7 @@ from utils.auth import TokenPayload
 
 router = APIRouter()
 
+
 @router.get("/wallet", summary="Get user's wallet info",  tags=["walltes"])
 def get_wallet(payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id
@@ -23,7 +24,9 @@ def get_wallet(payload: TokenPayload = Depends(get_current_user)):
                 balance=wallet.balance,
                 bonus_balance=wallet.bonus_balance
             )
+
             return JSONResponse({"Walet Info": wallet_response.dict()}, status_code=status.HTTP_200_OK)
+
         else:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
