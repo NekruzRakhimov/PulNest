@@ -2,54 +2,34 @@ from sqlalchemy.orm import Session
 
 from db.postgres import engine
 from db.models import Transactions
+
 from logger.logger import logger
-from datetime import timedelta, datetime
 
 
 
-def get_all_transactions(user_id):
+
+def get_transactions(user_id, min_amount, max_amount, start_date, end_date, state, tran_type, source_type, dest_type):
     logger.info(f"Getting all transactions... user_id={user_id}")
-    with Session(bind=engine) as db:
-        db_transactions = db.query(Transactions).filter(Transactions.user_id == user_id).all()
-        logger.info(f"Found {len(db_transactions)} cards for user_id={user_id}")
-        return db_transactions
-
-
-
-def get_transactions_by_amount(user_id: int, min_amount, max_amount):
-    logger.info(f"Getting transactions by amount range... user_id={user_id}")
-    with Session(bind=engine) as db:
-        db_transactions = db.query(Transactions).filter(Transactions.user_id == user_id, 
-                                                Transactions.amount.between(min_amount, max_amount)).all()
-        logger.info(f"Found {len(db_transactions)} cards for user_id={user_id}")
-        return db_transactions
-
-
-
-def get_transactions_by_date(user_id, start_date, end_date):
-    logger.info(f"Getting transactions by date range... user_id={user_id}")
-
-    # Преобразуем строки в datetime (если они еще не преобразованы)
-    if isinstance(start_date, str):
-        start_date = datetime.strptime(start_date, '%Y-%m-%d')
-    if isinstance(end_date, str):
-        end_date = datetime.strptime(end_date, '%Y-%m-%d')
 
     with Session(bind=engine) as db:
-        db_transactions = (
-            db.query(Transactions)
-            .filter(
-                Transactions.user_id == user_id,
-                Transactions.created_at >= start_date,
-                Transactions.created_at < end_date + timedelta(days=1)  # Учитываем конец дня
-            )
-            .all()
-        )
+        query = db.query(Transactions).filter(Transactions.user_id == user_id)
 
-        logger.info(f"Found {len(db_transactions)} transactions for user_id={user_id}")
-        return db_transactions
+        if min_amount is not None:
+            query = query.filter(Transactions.amount >= min_amount)
+        if max_amount is not None:
+            query = query.filter(Transactions.amount <= max_amount)
+        if start_date is not None:
+            query = query.filter(Transactions.created_at >= start_date)
+        if end_date is not None:
+            query = query.filter(Transactions.created_at <= end_date)
+        if state is not None:
+            query = query.filter(Transactions.status == state)
+        if tran_type is not None:
+            query = query.filter(Transactions.tran_type == tran_type)
+        if source_type is not None:
+            query = query.filter(Transactions.source_type == source_type)
+        if dest_type is not None:
+            query = query.filter(Transactions.dest_type == dest_type)
 
-
-
-
+        return query.all()  
 

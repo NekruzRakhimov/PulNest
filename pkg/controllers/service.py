@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 # Create Service
-@router.post("/services")
+@router.post("/services", tags="service")
 def create_service(service_data: ServiceSchema):
     try:
         service = service_service.create_service(service_data)
@@ -29,7 +29,7 @@ def create_service(service_data: ServiceSchema):
 
 
 # Get Service by ID
-@router.get("/services/{service_id}")
+@router.get("/services/{service_id}", tags="service")
 def get_service_by_id(service_id):
     try:
         service = service_service.get_service_by_id(service_id)
@@ -56,7 +56,7 @@ def get_service_by_id(service_id):
 
 
 # Get Service by Merchant Name
-@router.get("/services/merchant/{merchant_name}")
+@router.get("/services/merchant/{merchant_name}", tags="service")
 def get_service_by_merchant_name(merchant_name):
     try:
         merchant_name = merchant_name.strip()
@@ -87,7 +87,7 @@ def get_service_by_merchant_name(merchant_name):
 
 
 # Get All Services
-@router.get("/services")
+@router.get("/services", tags="service")
 def get_all_services():
     try:
         services = service_service.get_all_services()
@@ -119,7 +119,7 @@ def get_all_services():
 
 
 # Get Services by Category ID
-@router.get("/services-by-category/{category_id}")
+@router.get("/services-by-category/{category_id}", tags="service")
 def get_services_by_category_id(category_id):
     try:
         services = service_service.get_services_by_category_id(category_id)
@@ -150,7 +150,7 @@ def get_services_by_category_id(category_id):
 
 
 # Deactivate Service
-@router.patch("/services/{service_id}/deactivate")
+@router.patch("/services/{service_id}/deactivate", tags="service")
 def deactivate_service(service_id):
     try:
         service = service_service.deactivate_service(service_id)
@@ -173,7 +173,7 @@ def deactivate_service(service_id):
 
 
 # Soft Delete Service
-@router.delete("/services/{service_id}/soft-delete")
+@router.delete("/services/{service_id}/soft-delete", tags="service")
 def soft_delete_service(service_id):
     try:
         service = service_service.soft_delete_service(service_id)

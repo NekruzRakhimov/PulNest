@@ -1,15 +1,15 @@
-from db.models import Card
-from pkg.repositories import cards as cards_repository
-from pkg.repositories import transactions as transaction_repository
-from schemas.cards import CardCreate, CardReturn, CardUpdate
-from logger.logger import logger
 from decimal import Decimal
-
+import base64
 
 
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-import base64
+
+from db.models import Card
+from pkg.repositories import cards as cards_repository
+from schemas.cards import CardCreate, CardReturn, CardUpdate
+from logger.logger import logger
+
 
 # Фиксированный 16-байтовый ключ (AES требует ключ длиной 16, 24 или 32 байта)
 KEY = b'YourSecretKey123'  # Длина ключа должна быть ровно 16 байт
@@ -54,6 +54,7 @@ def get_card_by_id(user_id, card_id):
     decrypted_card_number = decrypt_data(card.card_number)
     
     c = CardReturn(
+        user_id=card.user_id,
         id = card.id,
         card_holder_name=card.card_holder_name,
         card_number=decrypted_card_number,
@@ -69,9 +70,9 @@ def get_all_cards(user_id):
     cards = cards_repository.get_all_cards(user_id)
     card_list = []
     
-    # Преобразуем все карты в список CardReturn
     for card in cards:
         c = CardReturn(
+            user_id=card.user_id,
             id = card.id,
             card_holder_name=card.card_holder_name,
             card_number=decrypt_data(card.card_number),
@@ -84,7 +85,16 @@ def get_all_cards(user_id):
 
 
 
+def unique(card):
+    return cards_repository.unique_check(card)
+
 def update_card(user_id: int, card_id: int, card: CardUpdate):
+    check = cards_repository.unique_check(encrypt_data(card.card_number))
+
+    if check is not None:
+        return -1
+
+
     c = Card(
         user_id=user_id,
         card_number=encrypt_data(card.card_number),
@@ -101,15 +111,25 @@ def delete_card(user_id: int, card_id: int):
     return cards_repository.delete_card(user_id, card_id)
 
 
+
 def expense_card_balance(user_id, amount, balance, card_id):
-  
-    if balance < amount:
+    logger.info(f"Attempting to debit card {card_id}. User ID: {user_id}, Balance: {balance}, Amount: {amount}")
+
+
+    if balance < Decimal(amount):
+        logger.error(f"Insufficient funds for card {card_id}. Balance: {balance}, Attempted debit: {amount}")
         return -1
 
     expense = cards_repository.expense_card_balance(user_id, card_id, amount)
 
+    if expense is None:
+        logger.error(f"Error while debiting card {card_id}. Amount: {amount}, User ID: {user_id}")
+    else:
+        logger.info(f"Successfully debited card {card_id}. Amount: {amount}, New Balance: {expense.balance}")
+
+
     return expense
-  
+
 
 
 def income_card_balance(user_id, amount, balance, card_id):
@@ -125,14 +145,13 @@ def income_card_balance(user_id, amount, balance, card_id):
 
 
 
-
-
 def get_deleted_cards(user_id):
     cards = cards_repository.get_deleted_cards(user_id)
     card_list = []
     
     for card in cards:
         c = CardReturn(
+            user_id=card.user_id,
             id = card.id,
             card_holder_name=card.card_holder_name,
             card_number=decrypt_data(card.card_number),
@@ -145,10 +164,10 @@ def get_deleted_cards(user_id):
 
 
 
-def get_card_by_card_number(user_id, card_number):
+def get_card_by_card_number(card_number):
     encrypted_card_number = encrypt_data(card_number)
 
-    card = cards_repository.get_card_by_card_number(user_id, encrypted_card_number)
+    card = cards_repository.get_card_by_card_number(encrypted_card_number)
 
     if card is None:
         return None
@@ -156,6 +175,7 @@ def get_card_by_card_number(user_id, card_number):
     decrypted_card_number = decrypt_data(card.card_number)
 
     c = CardReturn(
+        user_id=card.user_id,
         id = card.id,
         card_holder_name=card.card_holder_name,
         card_number=decrypted_card_number,

@@ -64,13 +64,16 @@ class Transactions(Base):
     __tablename__ = "transactions"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    tran_type = Column(String, nullable=False)
     source_type = Column(String, nullable=False)  
     source_id = Column(Integer, nullable=False)
-    source_number = Column(String, nullable=False) #добавила
+    source_number = Column(String, nullable=False)
     amount = Column(Float, nullable=False)
     dest_type = Column(String, nullable=False)  
     dest_id = Column(Integer, nullable=False)
-    dest_number = Column(String, nullable=False) #добавила
+    dest_number = Column(String, nullable=False) 
+    comment = Column(String, nullable=False) 
+    correlation_id = Column(String) 
     status = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.now)
     

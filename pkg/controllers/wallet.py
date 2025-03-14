@@ -23,7 +23,7 @@ def get_wallet(payload: TokenPayload = Depends(get_current_user)):
                 balance=wallet.balance,
                 bonus_balance=wallet.bonus_balance
             )
-            return JSONResponse({"Walet Info": wallet_response}, status_code=status.HTTP_200_OK)
+            return JSONResponse({"Walet Info": wallet_response.model_dump()}, status_code=status.HTTP_200_OK)
         else:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,

@@ -1,9 +1,11 @@
 
+import datetime
+
 from sqlalchemy.orm import Session
+
 from db.postgres import engine
 from db.models import Card
 from logger.logger import logger
-import datetime
 
     
 
@@ -45,7 +47,14 @@ def get_all_cards(user_id):
         logger.info(f"Found {len(db_cards)} cards for user_id={user_id}")
         return db_cards
 
- 
+def unique_check(card):
+    with Session(bind=engine) as db:
+        db_card = db.query(Card).filter(Card.card_number == card).first()
+        if db_card is None:
+            return None
+        
+        logger.info(f"Card found: id={db_card.id}")
+        return db_card
     
 def update_card(user_id, card_id, c: Card):
     logger.info(f"Updating card... user_id={user_id}, card_id={card_id}")
@@ -89,6 +98,7 @@ def expense_card_balance(user_id, card_id, amount):
         
         db_card.balance -= amount
         db.commit()
+        db.refresh(db_card)
         return db_card
         
 
@@ -129,13 +139,13 @@ def get_deleted_cards(user_id):
 
 
     
-def get_card_by_card_number(user_id, card_number):
-    logger.info(f"Searching card by PAN... user_id={user_id}, card_number={card_number}")
+def get_card_by_card_number(card_number):
+    logger.info(f"Searching card by PAN... card_number={card_number}")
     with Session(bind=engine) as db:
-        db_card = db.query(Card).filter(Card.deleted_at == None, Card.user_id == user_id,
+        db_card = db.query(Card).filter(Card.deleted_at == None,
                                         Card.card_number == card_number).first()
         if db_card is None:
-            logger.warning(f"Card not found by PAN: user_id={user_id}, card_number={card_number}")
+            logger.warning(f"Card not found by PAN: card_number={card_number}")
             return None
         logger.info(f"Card found: id={db_card.id}, user_id={db_card.user_id}")
         return db_card

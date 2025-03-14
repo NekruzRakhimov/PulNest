@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from decimal import Decimal
+
 
 class HistoryTransaction(BaseModel):
     id: int
