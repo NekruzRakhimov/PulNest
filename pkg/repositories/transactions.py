@@ -6,7 +6,7 @@ from db.models import Transaction
 from logger.logger import logger
 
 
-def p_2_p(t: Transactions):
+def p_2_p(t: Transaction):
     with Session(bind=engine) as db:
         transaction = Transaction(
             user_id=t.user_id,
@@ -33,7 +33,7 @@ def p_2_p(t: Transactions):
 def add_correlation_id(transaction_id, correlation_id):
     with Session(bind=engine) as db:
         logger.info(f"Adding correlation id... transaction_id={transaction_id}, correlation_id={correlation_id}")
-        db_transaction = db.query(Transactions).filter(Transactions.id == transaction_id).first()
+        db_transaction = db.query(Transaction).filter(Transaction.id == transaction_id).first()
         
         if db_transaction is None:
             return None

@@ -46,7 +46,7 @@ def wallet_to_wallet(user_id, expense_sender_id, sender_wallet_number, income_re
         logger.error(f"Invalid transaction: sender={expense_sender_id}, receiver={income_receiver_id}")
         return
 
-    t = Transactions(
+    t = Transaction(
         user_id=user_id,
         tran_type=tran_type,
         source_type="wallet",
@@ -73,7 +73,7 @@ def card_to_wallet(user_id, expense_sender_id, sender_card_number, income_receiv
         logger.error(f"Invalid transaction: sender={expense_sender_id}, receiver={income_receiver_id}")
         return
     
-    t = Transactions(
+    t = Transaction(
         user_id=user_id,
         tran_type=tran_type,
         source_type="card",
@@ -97,7 +97,7 @@ def wallet_to_card(user_id, expense_sender_id, sender_wallet_number, income_rece
         logger.error(f"Invalid transaction: sender={expense_sender_id}, receiver={income_receiver_id}")
         return
     
-    t = Transactions(
+    t = Transaction(
         user_id=user_id,
         tran_type=tran_type,
         source_type="wallet",
