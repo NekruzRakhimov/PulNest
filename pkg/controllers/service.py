@@ -1,20 +1,27 @@
 import json
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from fastapi.responses import JSONResponse
 from starlette.responses import Response
 
 from logger.logger import logger
 from pkg.services import service as service_service
+from pkg.services import category as service_category
 from schemas.service import ServiceResponse,  ServiceSchema
-
+from pkg.controllers.middlewares import get_current_user
+from utils.auth import TokenPayload
 
 
 router = APIRouter()
 
 
 # Create Service
-@router.post("/services", tags="service")
-def create_service(service_data: ServiceSchema):
+@router.post("/services", summary="Create service", tags=["services"])
+def create_service(service_data: ServiceSchema, payload: TokenPayload = Depends(get_current_user)):
+
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can create services"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+    
     try:
         service = service_service.create_service(service_data)
    
@@ -29,14 +36,17 @@ def create_service(service_data: ServiceSchema):
 
 
 # Get Service by ID
-@router.get("/services/{service_id}", tags="service")
+@router.get("/services/{service_id}", summary="Get service by ID", tags=["services"])
 def get_service_by_id(service_id):
     try:
         service = service_service.get_service_by_id(service_id)
         if service is not None:
-            service_response = ServiceSchema(
-                merchant_name = service.merchant_name,
-                category_id = service.category_id
+          
+            category_name = service_category.get_category_by_id(service.category_id).name
+            service_response = ServiceResponse(
+                id = service.id,
+                provider_name = service.provider_name,
+                category_name =  category_name
             )
     
             return JSONResponse(
@@ -55,48 +65,22 @@ def get_service_by_id(service_id):
         )
 
 
-# Get Service by Merchant Name
-@router.get("/services/merchant/{merchant_name}", tags="service")
-def get_service_by_merchant_name(merchant_name):
-    try:
-        merchant_name = merchant_name.strip()
-        service = service_service.get_service_by_merchant_name(merchant_name)
-        if service is not None:
-            service_response = ServiceResponse(
-                id = service.id,
-                merchant_name = service.merchant_name,
-                category_id = service.category_id
-                ) 
-                
-            return JSONResponse(
-                content={"Service": service_response.dict()},
-                status_code=status.HTTP_200_OK
-            )
-        else:
-            return JSONResponse(
-                content={"error" : "Service not found"}, 
-                status_code=status.HTTP_404_NOT_FOUND
-            )
-        
-    except Exception as e:
-        logger.error(f"Error retrieving service for merchant {merchant_name}: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="An error occurred while retrieving the service"
-        )
-
-
 # Get All Services
-@router.get("/services", tags="service")
+@router.get("/services", summary="Get service all services", tags=["services"])
 def get_all_services():
     try:
         services = service_service.get_all_services()
         if services is not None:
+            
             services_list = []
+            
             for service in services:
-                service_response = ServiceSchema(
-                    merchant_name=service.merchant_name,
-                    category_id=service.category_id
+            
+                category_name = service_category.get_category_by_id(service.category_id).name
+                service_response = ServiceResponse(
+                    id = service.id,
+                    provider_name = service.provider_name,
+                    category_name = category_name
                 )
                 
                 services_list.append(service_response.dict())
@@ -119,16 +103,18 @@ def get_all_services():
 
 
 # Get Services by Category ID
-@router.get("/services-by-category/{category_id}", tags="service")
+@router.get("/services-by-category/{category_id}", summary="Get service by category ID", tags=["services"])
 def get_services_by_category_id(category_id):
     try:
         services = service_service.get_services_by_category_id(category_id)
         if services is not None:
             services_list =[]
             for service in services:
-                service= ServiceSchema(
-                    merchant_name=service.merchant_name,
-                    category_id=service.category_id
+                category_name = service_category.get_category_by_id(service.category_id).name
+                service= ServiceResponse(
+                    id = service.id,
+                    provider_name = service.provider_name,
+                    category_name = category_name
                 )
                 services_list.append(service.dict())        
 
@@ -150,8 +136,13 @@ def get_services_by_category_id(category_id):
 
 
 # Deactivate Service
-@router.patch("/services/{service_id}/deactivate", tags="service")
-def deactivate_service(service_id):
+@router.patch("/services/{service_id}", summary="Deactivate service by ID", tags=["services"])
+def deactivate_service(service_id, payload: TokenPayload = Depends(get_current_user)):
+    
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can update services"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+    
     try:
         service = service_service.deactivate_service(service_id)
         if service is not None:
@@ -173,8 +164,13 @@ def deactivate_service(service_id):
 
 
 # Soft Delete Service
-@router.delete("/services/{service_id}/soft-delete", tags="service")
-def soft_delete_service(service_id):
+@router.delete("/services/{service_id}", summary="Delete service by ID", tags=["services"])
+def soft_delete_service(service_id, payload: TokenPayload = Depends(get_current_user)):
+
+    if payload.role != "admin":
+        return Response(json.dumps({"error": "only admin can update services"}),
+                        status_code=status.HTTP_403_FORBIDDEN)
+
     try:
         service = service_service.soft_delete_service(service_id)
         if service:

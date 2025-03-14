@@ -1,32 +1,48 @@
 import json
-from fastapi import APIRouter, status, Depends, HTTPException, Header
+from fastapi import APIRouter, status,  HTTPException
+from fastapi.responses import JSONResponse
 from starlette.responses import Response
+from datetime import datetime, date
 
 from logger.logger import logger
 from schemas.user import UserSchema, UserSignInSchema, VerificationRequest
-
 from pkg.services import user as user_service
 from utils.auth import create_access_token
+from schemas.admin import AdminSchema, AdminSignInSchema
+from pkg.services import admin as admin_service
+
 
 router = APIRouter()
 
 
 @router.post('/sign-up', summary='Sign up in app', tags=["auth"])
 def sign_up(user: UserSchema):
+  
+    birth_date = datetime.strptime(user.birth_date, "%Y-%m-%d").date()
+    today = date.today()
+    age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+
+    if age < 18:
+        return JSONResponse(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            content={"message": "You must be at least 18 years old to sign up."}
+        )
+
+
     # Check if user with the same phone or email already exists
     user_db_phone = user_service.get_user_by_phone(user.phone)
     user_db_email = user_service.get_user_by_email(user.email)
 
     if user_db_phone is not None:
-        raise HTTPException(
+        return JSONResponse(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="User with this phone already exists"
+            content={"message" : "User with this phone already exists"}
         )
     
     if user_db_email is not None:
-        raise HTTPException(
+        return JSONResponse(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="User with this email already exists"
+            content={"message" : "User with this email already exists"}
         )
 
     # Create the user in the database
@@ -42,9 +58,9 @@ def send_verification(email: str):
     # Check if the user exists
     user = user_service.get_user_by_email(email)
     if user is None:
-        raise HTTPException(
+        return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User with this email does not exist"
+            content={"message" :"User with this email does not exist"}
         )
 
     # Send verification code to the user's email
@@ -63,9 +79,9 @@ def verify_user(verification_request: VerificationRequest):
             "message": "User verified and wallet created successfully "
         }
     else:
-        raise HTTPException(
+        return JSONResponse(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid or expired code"
+            content={"message" : "Invalid or expired code"}
         )
 
 
@@ -83,7 +99,8 @@ def sign_in(user: UserSignInSchema):
     # Создаем JWT токен
     access_token = create_access_token(
         data={
-            "id": user_from_db.id
+            "id": user_from_db.id,
+            "role" : user_from_db.role
         }
     )
     return {
@@ -91,3 +108,41 @@ def sign_in(user: UserSignInSchema):
         "token_type": "bearer"
     }
 
+# Admin Auth
+
+@router.post('/admins/sign-up', summary='Sign up an admin', tags=["auth"])
+def sign_up(admin: AdminSchema):
+    admin_db = admin_service.get_admin_by_email(admin.email)
+
+    if admin_db is not None:
+        return JSONResponse(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            content={"message" : "Admin with this email already exists"}
+        )
+
+    
+    admin_service.create_admin(admin)
+
+    return {
+        "message": "Admin created successfully."
+    }
+
+
+@router.post('/admins/sign-in', summary='Sign in as admin', tags=["auth"])
+def sign_in(admin: AdminSignInSchema):
+    # Authenticate the admin
+    admin_from_db = admin_service.authenticate_admin(admin.email, admin.password)
+    if admin_from_db is None:
+        return Response(json.dumps({'error': 'Wrong email or password'}), status.HTTP_404_NOT_FOUND)
+
+    # Create JWT token
+    access_token = create_access_token(
+        data={
+            "id": admin_from_db.id,
+            "role": admin_from_db.role
+        }
+    )
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }
