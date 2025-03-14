@@ -123,4 +123,3 @@ def delete_verification_code(email: str):
             logger.error(f"Error deleting verification code for email {email}: {e}")
             raise
 
-# delete user

@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from decimal import Decimal
+from typing import Optional
 
 class CardBase(BaseModel):
     card_holder_name: str
@@ -23,7 +24,7 @@ class CardUpdate(CardBase):
 class CardResponse(CardBase):
     id: int
     created_at: datetime
-    deleted_at: datetime | None = None
+    deleted_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True  # Pydantic 2.x

@@ -9,7 +9,7 @@ from utils.hash import hash_password, verify_password
 from pkg.repositories import user as user_repository
 from pkg.repositories import wallet as wallet_repository
 from schemas.user import UserSchema
-from db.models import User
+from db.models import User, Wallet
 
 
 def get_user_by_phone(phone):
@@ -75,11 +75,16 @@ def verify_user(email: str, user_code: str):
     if user_code == db_code.code:
         user_repository.verify_user(email)
         user = get_user_by_email(email=email)
-        wallet_repository.create_wallet(user.id, user.phone)
+        
+        wallet = Wallet(user_id=user.id,
+                        phone = user.phone)
+        wallet_repository.create_wallet(wallet)
+        
         user_repository.delete_verification_code(email)  # Clean up used code
         return True
 
     return False
+
 
 
 
