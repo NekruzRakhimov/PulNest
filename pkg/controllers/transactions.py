@@ -28,7 +28,7 @@ INCOME_TYPE = "income"
 def log_card_error(card_number: str, error_message: str):
     logger.error(f"Card {card_number[:4]}****{card_number[-4:]}: {error_message}")
 
-@router.put("/card-card/", summary="Transfer money from card to card", tags=["transactions"])
+@router.post("/card-card/", summary="Transfer money from card to card", tags=["transactions"])
 def expense_card_balance(request: CardTransferCard, payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id
 
@@ -100,7 +100,7 @@ def expense_card_balance(request: CardTransferCard, payload: TokenPayload = Depe
         )
     
 
-@router.put("/wallet-wallet/", summary="Transfer money from wallet to wallet", tags=["transactions"])
+@router.post("/wallet-wallet/", summary="Transfer money from wallet to wallet", tags=["transactions"])
 def expense_wallet_balance(request: WalletTransferWallet, payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id
 
@@ -168,7 +168,7 @@ def expense_wallet_balance(request: WalletTransferWallet, payload: TokenPayload 
         )
     
 
-@router.put("/card-wallet/", summary="Transfer money from card to wallet", tags=["transactions"])
+@router.post("/card-wallet/", summary="Transfer money from card to wallet", tags=["transactions"])
 def expense_card_income_wallet(request: CardTransferWallet, payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id
 
@@ -235,7 +235,7 @@ def expense_card_income_wallet(request: CardTransferWallet, payload: TokenPayloa
         )
     
 
-@router.put("/wallet-card/", summary="Transfer money from wallet to card", tags=["transactions"])
+@router.post("/wallet-card/", summary="Transfer money from wallet to card", tags=["transactions"])
 def expense_wallet_income_card(request: WalletTransferCard, payload: TokenPayload = Depends(get_current_user)):
     user_id = payload.id
 
