@@ -1,4 +1,5 @@
 from pydantic import BaseModel, constr, EmailStr
+from typing import Annotated
 from datetime import date
 
 
@@ -7,8 +8,9 @@ class UserSchema(BaseModel):
     surname : str
     birth_date : str
     email : EmailStr
-    phone : constr(min_length=12, max_length=12)
+    phone : Annotated[str, constr(min_length=12, max_length=12)]
     password : str
+
 
 
 class VerificationRequest(BaseModel):
@@ -18,5 +20,5 @@ class VerificationRequest(BaseModel):
 
 
 class UserSignInSchema(BaseModel):
-    phone: constr(min_length=12, max_length=12)
+    phone: Annotated[str, constr(min_length=12, max_length=12)]
     password: str
